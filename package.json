@@ -1,0 +1,15 @@
+{
+  "name": "ticket-agent-v2",
+  "private": true,
+  "version": "1.0.0",
+  "packageManager": "yarn@4.1.1",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "backend:dev": "yarn workspace backend start:dev",
+    "backend:test": "yarn workspace backend test",
+    "frontend:dev": "yarn workspace frontend dev"
+  }
+}

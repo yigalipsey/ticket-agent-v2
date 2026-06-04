@@ -1,0 +1,16 @@
+---
+description: "Strict lock to prevent any direct code modification on the main branch"
+alwaysApply: true
+---
+
+# Strict Main Branch Lock
+
+## Critical Constraint
+
+- **NEVER** perform any write, delete, create, or modification operations on code files or application configurations while on the `main` branch.
+- The `main` branch is strictly reserved for stable infrastructure states and final documentation updates.
+
+## Execution Workflow
+
+- If the user asks for a feature, refactor, or code change while on the `main` branch, you **MUST** instruct the user to switch to a dedicated feature branch first (e.g., `git checkout -b feature/...`).
+- Refuse to write or edit application files until you are on an isolated feature branch.

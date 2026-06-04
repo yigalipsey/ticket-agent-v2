@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Production / Builds
+dist/
+.next/
+out/
+
+# Environment Variables (קריטי!)
+.env
+.env.local
+.env.production
+.env.development
+
+# OS 
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
