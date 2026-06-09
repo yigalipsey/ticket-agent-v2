@@ -4,8 +4,9 @@ import { DbModule } from './db/db.module';
 import { CountriesModule } from './features/countries/countries.module';
 import { CitiesModule } from './features/cities/cities.module';
 import { CompetitionsModule } from './features/competitions/competitions.module';
+import { TeamsModule } from './features/teams/teams.module';
 
 @Module({
-  imports: [ConfigModule, DbModule, CountriesModule, CitiesModule, CompetitionsModule],
+  imports: [ConfigModule, DbModule, CountriesModule, CitiesModule, CompetitionsModule, TeamsModule],
 })
 export class AppModule {}
