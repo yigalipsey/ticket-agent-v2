@@ -3,8 +3,9 @@ import { ConfigModule } from './config/config.module';
 import { DbModule } from './db/db.module';
 import { CountriesModule } from './features/countries/countries.module';
 import { CitiesModule } from './features/cities/cities.module';
+import { TeamsModule } from './features/teams/teams.module';
 
 @Module({
-  imports: [ConfigModule, DbModule, CountriesModule, CitiesModule],
+  imports: [ConfigModule, DbModule, CountriesModule, CitiesModule, TeamsModule],
 })
 export class AppModule {}

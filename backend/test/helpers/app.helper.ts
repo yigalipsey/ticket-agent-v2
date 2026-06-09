@@ -12,6 +12,7 @@ import { DRIZZLE } from '../../src/db/drizzle.provider';
 import type * as schema from '../../src/db/schema';
 import { citiesTable } from '../../src/features/cities/cities.schema';
 import { countriesTable } from '../../src/features/countries/countries.schema';
+import { teamsTable } from '../../src/features/teams/teams.schema';
 import helmet from 'helmet';
 
 type DrizzleDb = PostgresJsDatabase<typeof schema>;
@@ -53,6 +54,7 @@ export function getDb(): DrizzleDb {
 }
 
 export async function truncateTables(): Promise<void> {
+  await db.delete(teamsTable);
   await db.delete(citiesTable);
   await db.delete(countriesTable);
 }
