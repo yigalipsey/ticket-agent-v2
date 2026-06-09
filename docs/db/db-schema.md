@@ -125,9 +125,8 @@ venues → cities (name, name_en) → countries (name, name_en)
 | `image_url` | `text` | nullable |
 | `background_image` | `text` | nullable |
 | `description` | `text` | nullable |
-| `type` | `text` | NOT NULL, enum `'League' \| 'Cup'`, default `'League'` |
+| `type` | `competition_type` | NOT NULL, pgEnum `'League' \| 'Cup'`, default `'League'` |
 | `is_popular` | `boolean` | default false |
-| `months` | `text[]` | nullable — format `YYYY-MM` |
 | `seo_content` | `jsonb` | nullable — `[{ title, content, order? }]` |
 | `faqs` | `jsonb` | nullable — `[{ question, answer, order? }]` |
 | `api_competition_id` | `integer` | UNIQUE, nullable (API-Football ID) |

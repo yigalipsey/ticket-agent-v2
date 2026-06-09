@@ -8,6 +8,13 @@
       "when": 1780572796260,
       "tag": "0000_curious_unicorn",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1781002444381,
+      "tag": "0001_competitions",
+      "breakpoints": true
     }
   ]
 }

@@ -100,7 +100,6 @@ Table competitions {
   description text
   type competition_type [not null, default: 'League']
   is_popular boolean [not null, default: false]
-  months text[] [note: 'YYYY-MM']
   seo_content json
   faqs json
   api_competition_id int [unique, note: 'API-Football ID']

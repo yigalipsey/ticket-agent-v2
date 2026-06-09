@@ -5,13 +5,12 @@ dotenv.config({ path: resolve(process.cwd(), '.env') });
 
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
+import { sql } from 'drizzle-orm';
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { default as supertest, type SuperTest, type Test as SupertestTest } from 'supertest';
 import { AppModule } from '../../src/app.module';
 import { DRIZZLE } from '../../src/db/drizzle.provider';
 import type * as schema from '../../src/db/schema';
-import { citiesTable } from '../../src/features/cities/cities.schema';
-import { countriesTable } from '../../src/features/countries/countries.schema';
 import helmet from 'helmet';
 
 type DrizzleDb = PostgresJsDatabase<typeof schema>;
@@ -53,6 +52,7 @@ export function getDb(): DrizzleDb {
 }
 
 export async function truncateTables(): Promise<void> {
-  await db.delete(citiesTable);
-  await db.delete(countriesTable);
+  await db.execute(
+    sql`TRUNCATE TABLE competitions, cities, countries RESTART IDENTITY CASCADE`,
+  );
 }
