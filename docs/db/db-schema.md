@@ -123,7 +123,7 @@ venues → cities (name, name_en) → countries (name, name_en)
 | `parent_competition_id` | `uuid` | nullable, FK → `competitions.id` — cup→league / phase hierarchy |
 | `logo_url` | `text` | nullable |
 | `image_url` | `text` | nullable |
-| `background_image` | `text` | nullable |
+| `banner_url` | `text` | nullable |
 | `description` | `text` | nullable |
 | `type` | `competition_type` | NOT NULL, pgEnum `'League' \| 'Cup'`, default `'League'` |
 | `is_popular` | `boolean` | default false |
@@ -165,7 +165,7 @@ Supplier-specific IDs live in `team_supplier_mappings`, not on `teams`.
 | `logo_url` | `text` | nullable |
 | `shirt_image_url` | `text` | nullable |
 | `image_url` | `text` | nullable |
-| `background_image` | `text` | nullable |
+| `banner_url` | `text` | nullable |
 | `primary_color` | `text` | nullable — hex `#RRGGBB` |
 | `secondary_color` | `text` | nullable — hex `#RRGGBB` |
 | `api_football_id` | `integer` | UNIQUE, nullable |
@@ -190,12 +190,14 @@ Supplier-specific IDs live in `team_supplier_mappings`, not on `teams`.
 | Column | Type | Constraints |
 |---|---|---|
 | `id` | `uuid` | PRIMARY KEY |
+| `slug` | `text` | NOT NULL |
 | `name` | `text` | NOT NULL (Hebrew) |
 | `name_en` | `text` | nullable |
 | `address` | `text` | nullable (Hebrew) |
 | `address_en` | `text` | nullable |
 | `capacity` | `integer` | nullable |
-| `image` | `text` | nullable |
+| `image_url` | `text` | nullable |
+| `banner_url` | `text` | nullable |
 | `map_url` | `text` | nullable — static venue thumbnail / overview image |
 | `map_svg_path` | `text` | nullable — path or URL to the venue seating SVG source file |
 | `map_sections_data` | `jsonb` | nullable — interactive section map config: `{ viewBox, blocks: [{ dataBlock, path, label, … }] }` |
@@ -206,6 +208,7 @@ Supplier-specific IDs live in `team_supplier_mappings`, not on `teams`.
 | `updated_at` | `timestamp` | NOT NULL, default now |
 
 **Indexes**
+- UNIQUE on `slug`
 - UNIQUE on `api_football_id`
 - `city_id`
 - `is_popular`

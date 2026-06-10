@@ -22,7 +22,7 @@ export const teamsTable = pgTable(
     logo_url: text('logo_url'),
     shirt_image_url: text('shirt_image_url'),
     image_url: text('image_url'),
-    background_image: text('background_image'),
+    banner_url: text('banner_url'),
     primary_color: text('primary_color'),
     secondary_color: text('secondary_color'),
     api_football_id: integer('api_football_id').unique(),
