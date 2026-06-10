@@ -1,5 +1,6 @@
 import {
   boolean,
+  decimal,
   index,
   integer,
   jsonb,
@@ -22,11 +23,11 @@ export const venuesTable = pgTable(
     address: text('address'),
     address_en: text('address_en'),
     capacity: integer('capacity'),
+    latitude: decimal('latitude', { precision: 9, scale: 6 }),
+    longitude: decimal('longitude', { precision: 9, scale: 6 }),
     image_url: text('image_url'),
     banner_url: text('banner_url'),
     map_url: text('map_url'),
-    map_svg_path: text('map_svg_path'),
-    map_sections_data: jsonb('map_sections_data'),
     seo_content: jsonb('seo_content').$type<SEOContent>(),
     faqs: jsonb('faqs').$type<FaqItem[]>(),
     api_football_id: integer('api_football_id').unique(),
@@ -42,3 +43,4 @@ export const venuesTable = pgTable(
     index('venues_is_popular_idx').on(table.is_popular),
   ],
 );
+

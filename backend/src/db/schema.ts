@@ -3,3 +3,5 @@ export * from '../features/countries/countries.schema';
 export * from '../features/cities/cities.schema';
 export * from '../features/competitions/competitions.schema';
 export * from '../features/teams/teams.schema';
+export * from '../features/venues/venues.schema';
+

@@ -22,6 +22,15 @@ A **competition** is a football league or cup tournament (formerly called "leagu
 - **Type:** `League` or `Cup` — stored as PostgreSQL `competition_type` enum via Drizzle `pgEnum`
 - **External ID:** `api_competition_id` — nullable, unique API-Football league/cup ID for ingest sync
 
+### Venue
+A stadium or concert hall where events (football matches or concerts) take place.
+- **Canonical table:** `venues`
+- **Public identifier:** `slug` (never expose UUID in URLs)
+- **Geography:** every venue belongs to exactly one `city` via `city_id`
+- **Capacity:** holds capacity metadata, geographical coordinates (latitude/longitude), and visual assets (image, banner, static map image).
+- **External ID:** `api_football_id` — nullable, unique API-Football venue ID for fixture synchronization.
+
+
 ### Competition Type
 
 | Value | Meaning |

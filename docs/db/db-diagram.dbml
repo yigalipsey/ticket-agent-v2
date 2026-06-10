@@ -135,22 +135,39 @@ Table venues {
   address text [note: 'Hebrew']
   address_en text
   capacity int
+  latitude decimal(9,6)
+  longitude decimal(9,6)
   image_url text [note: 'Profile / square thumbnail image']
   banner_url text [note: 'Main banner / hero image for top of page']
-  map_url text [note: 'Static seating chart thumbnail']
-  map_svg_path text [note: 'SVG source path/URL']
-  map_sections_data jsonb [note: '{ viewBox, blocks[] }'] // שונה ל-jsonb
-  seo_content jsonb [note: '[{ title, content, order? }]'] // שונה ל-jsonb
-  faqs jsonb [note: '[{ question, answer, order? }]'] // שונה ל-jsonb
+  map_url text [note: 'Static seating chart image']
+  seo_content jsonb [note: '[{ title, content, order? }]']
+  faqs jsonb [note: '[{ question, answer, order? }]']
   api_football_id int [unique]
   is_popular boolean [not null, default: false]
-  city_id uuid [ref: > cities.id]
+  city_id uuid [not null, ref: > cities.id]
   created_at timestamp [not null, default: `now()`]
   updated_at timestamp [not null, default: `now()`]
 
   Indexes {
     city_id
     is_popular
+  }
+}
+
+Table competition_finals {
+  id uuid [pk, default: `gen_random_uuid()`]
+  competition_id uuid [not null, ref: > competitions.id]
+  season text [not null, note: 'e.g. 2025/2026']
+  winner_id uuid [ref: > teams.id]
+  runner_up_id uuid [ref: > teams.id]
+  venue_id uuid [ref: > venues.id]
+  attendance int
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp [not null, default: `now()`]
+
+  indexes {
+    (competition_id, season) [unique]
+    competition_id
   }
 }
 
