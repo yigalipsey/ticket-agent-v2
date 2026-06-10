@@ -284,15 +284,13 @@ Supplier-specific IDs live in `team_supplier_mappings`, not on `teams`.
 
 > Junction table. Teams may exist without any row here (no mandatory competition link).  
 > A team may have multiple rows across seasons (history) and across competitions (league + cup).  
-> `is_current` marks the **active division membership** for relegation/promotion — e.g. after promotion, the new league row has `is_current = true` and the old division row is set to `false` (row kept for history).
 
 | Column | Type | Constraints |
 |---|---|---|
 | `team_id` | `uuid` | NOT NULL, FK → `teams.id` ON DELETE CASCADE |
 | `competition_id` | `uuid` | NOT NULL, FK → `competitions.id` ON DELETE CASCADE |
 | `season` | `text` | NOT NULL — e.g. `"2024/2025"` |
-| `status` | `text` | NOT NULL, enum `'active'\|'eliminated'\|'winner'`, default `'active'` — cup knockout progress |
-| `is_current` | `boolean` | NOT NULL, default true — league tier the team currently plays in this season |
+| `status` | `team_competition_status` | NOT NULL, pgEnum `'active'\|'eliminated'\|'relegated'\|'withdrawn'`, default `'active'` |
 | `created_at` | `timestamp` | NOT NULL, default now |
 | `updated_at` | `timestamp` | NOT NULL, default now |
 
@@ -301,7 +299,7 @@ Supplier-specific IDs live in `team_supplier_mappings`, not on `teams`.
 **Indexes**
 - `competition_id`
 - `(competition_id, season)` — for "all teams in a competition this season"
-- `(team_id, season, is_current)` — for "which league is this team in now?"
+- `(team_id, season)`
 
 ---
 

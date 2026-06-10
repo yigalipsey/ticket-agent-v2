@@ -53,7 +53,7 @@ export function getDb(): DrizzleDb {
 
 export async function truncateTables(): Promise<void> {
   await db.execute(
-    sql`TRUNCATE TABLE teams, competitions, venues, cities, countries RESTART IDENTITY CASCADE`,
+    sql`TRUNCATE TABLE team_competitions, teams, competitions, venues, cities, countries RESTART IDENTITY CASCADE`,
   );
 }
 
