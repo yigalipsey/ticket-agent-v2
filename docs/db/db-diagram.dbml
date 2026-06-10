@@ -225,6 +225,8 @@ Table artists {
   is_featured boolean [not null, default: false]
   created_at timestamp [not null, default: `now()`]
   updated_at timestamp [not null, default: `now()`]
+  seo_content jsonb
+faqs jsonb
 }
 
 Table concert_events {
