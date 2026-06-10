@@ -1,7 +1,9 @@
 export type { Country, NewCountry } from '../features/countries/countries.types';
 export type { City, NewCity } from '../features/cities/cities.types';
 export type { Team, NewTeam } from '../features/teams/teams.types';
+export type { Venue, NewVenue } from '../features/venues/venues.types';
 export type {
+
   Competition,
   CompetitionType,
   NewCompetition,

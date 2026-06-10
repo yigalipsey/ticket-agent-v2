@@ -31,7 +31,7 @@ export const competitionsTable = pgTable(
     ),
     logo_url: text('logo_url'),
     image_url: text('image_url'),
-    background_image: text('background_image'),
+    banner_url: text('banner_url'),
     description: text('description'),
     type: competitionTypeEnum('type').notNull().default('League'),
     is_popular: boolean('is_popular').default(false),

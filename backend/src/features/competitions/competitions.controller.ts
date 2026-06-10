@@ -13,7 +13,7 @@ import type { CompetitionType } from './competitions.types';
 
 @Controller('competitions')
 export class CompetitionsController {
-  constructor(private readonly competitionsService: CompetitionsService) {}
+  constructor(private readonly competitionsService: CompetitionsService) { }
 
   @Get()
   findAll(
@@ -49,7 +49,7 @@ export class CompetitionsController {
       parent_competition_id: dto.parentCompetitionId,
       logo_url: dto.logoUrl,
       image_url: dto.imageUrl,
-      background_image: dto.backgroundImage,
+      banner_url: dto.backgroundImage,
       description: dto.description,
       type: dto.type,
       is_popular: dto.isPopular,

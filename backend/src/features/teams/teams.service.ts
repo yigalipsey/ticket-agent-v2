@@ -5,7 +5,7 @@ import type { NewTeam } from './teams.types';
 
 @Injectable()
 export class TeamsService {
-  constructor(private readonly teamsRepository: TeamsRepository) {}
+  constructor(private readonly teamsRepository: TeamsRepository) { }
 
   findAll(options?: { popularOnly?: boolean; search?: string }) {
     return this.teamsRepository.findAll(options);
@@ -32,7 +32,7 @@ export class TeamsService {
       logo_url: dto.logoUrl,
       shirt_image_url: dto.shirtImageUrl,
       image_url: dto.imageUrl,
-      background_image: dto.backgroundImage,
+      banner_url: dto.backgroundImage,
       primary_color: primaryColorNormalized,
       secondary_color: secondaryColorNormalized,
       api_football_id: dto.apiFootballId,
