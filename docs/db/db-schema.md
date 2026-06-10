@@ -380,12 +380,12 @@ Public URL: `ticketagent.co.il/{slug}/tickets`. Slug is set once at create and *
 
 **Slugify:** lowercase → replace non `[a-z0-9]` with `-` → trim leading/trailing `-`.
 
-**Date segment:** `YYYY-MM-DD` from `football_events.date` (UTC calendar date).
+**Date segment:** `YYYY-MM-DD` from `football_events.starts_at` (UTC calendar date).
 
 **League** (`competitions.type = 'League'`)
 
 ```
-{home_slug}-vs-{away_slug}-{date}
+{home_slug}-vs-{away_slug}-{starts_at}
 ```
 
 Example: `everton-vs-newcastle-2026-04-12`
@@ -395,7 +395,7 @@ Example: `everton-vs-newcastle-2026-04-12`
 Same teams can meet multiple times (group + knockout). Append slugified `round`:
 
 ```
-{home_slug}-vs-{away_slug}-{date}-{round_slug}
+{home_slug}-vs-{away_slug}-{starts_at}-{round_slug}
 ```
 
 Example: `brazil-vs-france-2026-07-06-final`, `england-vs-slovenia-2026-06-25-group-stage`
@@ -411,22 +411,20 @@ Example: `brazil-vs-france-2026-07-06-final`, `england-vs-slovenia-2026-06-25-gr
 | `status` | Meaning |
 |---|---|
 | `scheduled` | Default — fixture is (still) planned |
-| `postponed` | Not playing on `date`; may be rescheduled |
+| `postponed` | Not playing on scheduled time; may be rescheduled |
 | `cancelled` | Will not be played; no replacement row expected |
 | `completed` | Match finished (optional filter for archive/history) |
 
 **Reschedule flow**
 
-1. Original row: `status = 'postponed'`, `date` unchanged (historical scheduled date) or frozen at last known schedule — pick one convention in ingest; **do not** change `slug`.
-2. New row: new `date`, new `slug` (date segment changes), `rescheduled_from` → original.id, `status = 'scheduled'`.
-3. Supplier mappings on the original row are copied/rewired to the new row as part of ingest.
+1. Fixture updates simply update `starts_at` directly on the event record.
+2. For major rescheduling where a new event record is required, the old event's status is changed to `postponed`/`cancelled` and a new event is created.
 
 | Column | Type | Constraints |
 |---|---|---|
 | `id` | `uuid` | PRIMARY KEY |
-| `date` | `timestamp` | NOT NULL |
+| `starts_at` | `timestamptz` | NOT NULL |
 | `status` | `event_status` | NOT NULL, enum `'scheduled'\|'postponed'\|'cancelled'\|'completed'`, default `'scheduled'` |
-| `rescheduled_from` | `uuid` | nullable, FK → `football_events.id` — points to superseded row when this event replaces a postponed fixture |
 | `competition_id` | `uuid` | NOT NULL, FK → `competitions.id` |
 | `home_team_id` | `uuid` | nullable, FK → `teams.id` — required when `has_tbd_team = false` |
 | `away_team_id` | `uuid` | nullable, FK → `teams.id` — required when `has_tbd_team = false` |
@@ -450,13 +448,12 @@ Example: `brazil-vs-france-2026-07-06-final`, `england-vs-slovenia-2026-06-25-gr
 **Indexes**
 - UNIQUE on `slug`
 - UNIQUE on `api_football_external_id`
-- `rescheduled_from`
-- `(status, date)`
-- `(competition_id, date)`
-- `(home_team_id, date)`
-- `(away_team_id, date)`
-- `(venue_id, date)`
-- `(is_hot, date)`
+- `(status, starts_at)`
+- `(competition_id, starts_at)`
+- `(home_team_id, starts_at)`
+- `(away_team_id, starts_at)`
+- `(venue_id, starts_at)`
+- `(is_hot, starts_at)`
 - `min_price_sorting_ils`
 
 ---

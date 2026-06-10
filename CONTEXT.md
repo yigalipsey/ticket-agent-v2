@@ -48,6 +48,14 @@ A junction representing a team's participation in a competition for a specific s
     *   `relegated`: The team has been relegated at the end of the season.
     *   `withdrawn`: The team withdrew from the competition.
 
+### Football Event
+A scheduled football match between two teams (which may be specific resolved teams or placeholder TBD slots like "Winner of Match A") at a specific venue, belonging to a competition.
+*   **Canonical table:** `football_events`
+*   **Public Identifier:** `event_number` (a unique public URL ID, e.g., starts at 20000). The `slug` is used for SEO-friendly URLs.
+*   **Teams**: Can be fully resolved clubs or placeholder TBD name labels (at least one placeholder must be set if it is flagged as a TBD match).
+*   **Venue**: Always linked to a venue. If the venue is unknown, it references a designated placeholder TBD venue.
+*   **External Mappings**: Synced using IDs from canonical fixture providers (API-Football) and linked to ticket supplier offerings via mappings.
+
 
 ## Geography Chain
 

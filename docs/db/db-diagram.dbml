@@ -40,7 +40,6 @@ Enum supplier_origin {
   international
 }
 
-
 Enum min_price_currency {
   EUR
   USD
@@ -60,8 +59,8 @@ Table countries {
   name text [not null, note: 'Hebrew']
   name_en text
   slug text [not null, unique]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 }
 
 Table cities {
@@ -74,11 +73,11 @@ Table cities {
   image_url text
   seo_content jsonb [note: '[{ title, content, order? }]']
   faqs jsonb [note: '[{ question, answer, order? }]']
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 }
 
-// ─── Football core ─────────────────────────────────────────────────────────────
+// ─── Football core ────────────────────────────────────────────────────────────
 
 TableGroup football_core {
   competitions
@@ -103,8 +102,8 @@ Table competitions {
   seo_content jsonb
   faqs jsonb
   api_competition_id int [unique, note: 'API-Football ID']
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 }
 
 Table teams {
@@ -122,8 +121,8 @@ Table teams {
   api_football_id int [unique]
   is_popular boolean [not null, default: false]
   seo_content jsonb
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 }
 
 Table venues {
@@ -145,10 +144,10 @@ Table venues {
   api_football_id int [unique]
   is_popular boolean [not null, default: false]
   city_id uuid [not null, ref: > cities.id]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 
-  Indexes {
+  indexes {
     city_id
     is_popular
   }
@@ -162,8 +161,8 @@ Table competition_finals {
   runner_up_id uuid [ref: > teams.id]
   venue_id uuid [ref: > venues.id]
   attendance int
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 
   indexes {
     (competition_id, season) [unique]
@@ -177,8 +176,8 @@ Table team_competitions {
   season text [not null, note: 'e.g. 2024/2025']
   status team_competition_status [not null, default: 'active']
   is_current boolean [not null, default: true, note: 'active league tier']
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 
   indexes {
     (team_id, competition_id, season) [pk]
@@ -187,7 +186,7 @@ Table team_competitions {
   }
 }
 
-// ─── Events ────────────────────────────────────────────────────────────────────
+// ─── Events ───────────────────────────────────────────────────────────────────
 
 TableGroup events {
   football_events
@@ -196,39 +195,44 @@ TableGroup events {
 
 Table football_events {
   id uuid [pk, default: `gen_random_uuid()`]
-  date timestamp [not null]
+  event_number bigint [unique, not null, default: `nextval('football_events_event_number_seq')`, note: 'Public URL ID, starts at 20000']
+  starts_at timestamptz [not null]
   status event_status [not null, default: 'scheduled']
-  rescheduled_from uuid [ref: > football_events.id]
   competition_id uuid [not null, ref: > competitions.id]
   home_team_id uuid [ref: > teams.id]
   away_team_id uuid [ref: > teams.id]
-  venue_id uuid [not null, ref: > venues.id]
-  home_team_name text [note: 'TBD placeholder only']
-  away_team_name text
+  venue_id uuid [not null, ref: > venues.id, note: 'Use TBD venue record when unknown']
+  home_team_name text [note: 'Display label when team is TBD, e.g. Winner of Match A. Must be NULL if home_team_id is set']
+  away_team_name text [note: 'Display label when team is TBD, e.g. Winner of Match B. Must be NULL if away_team_id is set']
   has_tbd_team boolean [not null, default: false]
-  round text
+  round text [note: 'e.g. Quarter Final, Group Stage']
+  round_number int [note: 'Numeric order for sorting']
   slug text [not null, unique]
-  round_number int
   tags text[]
   is_hot boolean [not null, default: false]
   api_football_external_id int [unique]
+  football_data_external_id int [unique]
   min_price_amount decimal(10,2)
   min_price_currency min_price_currency
-  min_price_sorting_ils decimal(10,2) [note: 'sort-only']
-  min_price_updated_at timestamp
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  min_price_sorting_ils decimal(10,2) [note: 'Sort-only, ILS normalized']
+  min_price_updated_at timestamptz
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 
   indexes {
-    (status, date)
-    (competition_id, date)
-    (home_team_id, date)
-    (away_team_id, date)
-    (venue_id, date)
-    (is_hot, date)
+    (competition_id, starts_at)
+    (venue_id, starts_at)
+    (is_hot, starts_at)
     min_price_sorting_ils
-    rescheduled_from
   }
+
+  note: '''
+    Constraints (apply in migration):
+    - CHECK (home_team_id IS NULL OR home_team_name IS NULL)
+    - CHECK (away_team_id IS NULL OR away_team_name IS NULL)
+    - Trigger: set updated_at automatically on every UPDATE
+    - Sequence: CREATE SEQUENCE football_events_event_number_seq START 20000
+  '''
 }
 
 Table artists {
@@ -240,10 +244,10 @@ Table artists {
   description text
   slug text [not null, unique]
   is_featured boolean [not null, default: false]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
   seo_content jsonb
-faqs jsonb
+  faqs jsonb
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 }
 
 Table concert_events {
@@ -251,7 +255,7 @@ Table concert_events {
   slug text [not null, unique]
   artist_id uuid [not null, ref: > artists.id]
   tour_name text
-  date timestamp [not null]
+  starts_at timestamptz [not null]
   venue_id uuid [not null, ref: > venues.id]
   city_id uuid [not null, ref: > cities.id]
   status event_status [not null, default: 'scheduled']
@@ -260,22 +264,27 @@ Table concert_events {
   tags text[]
   min_price_amount decimal(10,2)
   min_price_currency min_price_currency
-  min_price_sorting_ils decimal(10,2) [note: 'sort-only']
-  min_price_updated_at timestamp
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  min_price_provider_id uuid [ref: > suppliers.id, note: 'Supplier who provided the min price']
+  min_price_sorting_ils decimal(10,2) [note: 'Sort-only, ILS normalized']
+  min_price_updated_at timestamptz
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 
   indexes {
-    (city_id, date)
-    (venue_id, date)
-    (status, date)
-    (is_hot, date)
+    (artist_id, starts_at)
+    (city_id, starts_at)
+    (venue_id, starts_at)
+    (is_hot, starts_at)
     min_price_sorting_ils
-    rescheduled_from
   }
+
+  note: '''
+    Constraints (apply in migration):
+    - Trigger: set updated_at automatically on every UPDATE
+  '''
 }
 
-// ─── Suppliers & lazy-update mappings ──────────────────────────────────────────
+// ─── Suppliers & lazy-update mappings ────────────────────────────────────────
 
 TableGroup suppliers_and_mappings {
   suppliers
@@ -304,12 +313,12 @@ Table suppliers {
   contact_info jsonb
   sync_config jsonb [note: 'schedule only']
   is_active boolean [not null, default: true]
-  deactivated_at timestamp
-  last_successful_sync_at timestamp
+  deactivated_at timestamptz
+  last_successful_sync_at timestamptz
   priority int [not null, default: 0]
   metadata jsonb
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 }
 
 Table team_supplier_mappings {
@@ -318,8 +327,8 @@ Table team_supplier_mappings {
   supplier_id uuid [not null, ref: > suppliers.id]
   supplier_team_name text
   supplier_external_id text [not null]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 
   indexes {
     (supplier_id, supplier_external_id)
@@ -333,8 +342,8 @@ Table venue_supplier_mappings {
   supplier_id uuid [not null, ref: > suppliers.id]
   supplier_venue_name text
   supplier_external_id text [not null]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 
   indexes {
     (supplier_id, supplier_external_id)
@@ -348,8 +357,8 @@ Table football_event_supplier_mappings {
   supplier_id uuid [not null, ref: > suppliers.id]
   supplier_external_id text [not null]
   metadata jsonb
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 
   indexes {
     (supplier_id, supplier_external_id)
@@ -363,8 +372,8 @@ Table concert_event_supplier_mappings {
   supplier_id uuid [not null, ref: > suppliers.id]
   supplier_external_id text [not null]
   metadata jsonb
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 
   indexes {
     (supplier_id, supplier_external_id)

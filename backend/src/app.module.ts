@@ -7,6 +7,7 @@ import { CompetitionsModule } from './features/competitions/competitions.module'
 import { TeamsModule } from './features/teams/teams.module';
 import { VenuesModule } from './features/venues/venues.module';
 import { TeamCompetitionsModule } from './features/team-competitions/team-competitions.module';
+import { FootballEventsModule } from './features/football-events/football-events.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { TeamCompetitionsModule } from './features/team-competitions/team-compet
     TeamsModule,
     VenuesModule,
     TeamCompetitionsModule,
+    FootballEventsModule,
   ],
 })
 export class AppModule {}
