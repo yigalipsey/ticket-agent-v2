@@ -38,6 +38,17 @@ A stadium or concert hall where events (football matches or concerts) take place
 | `League` | Round-robin or season-long division (default) |
 | `Cup` | Knockout or multi-phase tournament; affects match slug generation (appends round segment) |
 
+### Team Competition
+A junction representing a team's participation in a competition for a specific season.
+*   **Canonical table:** `team_competitions`
+*   **Composite Primary Key:** `(team_id, competition_id, season)`
+*   **Status:** Marks the team's standing in the competition. Stored as `team_competition_status` enum with values:
+    *   `active`: The team is currently participating and active in the competition.
+    *   `eliminated`: The team has been knocked out of the tournament (e.g., cup).
+    *   `relegated`: The team has been relegated at the end of the season.
+    *   `withdrawn`: The team withdrew from the competition.
+
+
 ## Geography Chain
 
 ```

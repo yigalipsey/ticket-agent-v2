@@ -6,9 +6,20 @@ import { CitiesModule } from './features/cities/cities.module';
 import { CompetitionsModule } from './features/competitions/competitions.module';
 import { TeamsModule } from './features/teams/teams.module';
 import { VenuesModule } from './features/venues/venues.module';
+import { TeamCompetitionsModule } from './features/team-competitions/team-competitions.module';
 
 @Module({
-  imports: [ConfigModule, DbModule, CountriesModule, CitiesModule, CompetitionsModule, TeamsModule, VenuesModule],
+  imports: [
+    ConfigModule,
+    DbModule,
+    CountriesModule,
+    CitiesModule,
+    CompetitionsModule,
+    TeamsModule,
+    VenuesModule,
+    TeamCompetitionsModule,
+  ],
 })
 export class AppModule {}
+
 

@@ -3,13 +3,17 @@ export type { City, NewCity } from '../features/cities/cities.types';
 export type { Team, NewTeam } from '../features/teams/teams.types';
 export type { Venue, NewVenue } from '../features/venues/venues.types';
 export type {
-
   Competition,
   CompetitionType,
   NewCompetition,
 } from '../features/competitions/competitions.types';
 export type {
+  TeamCompetition,
+  NewTeamCompetition,
+} from '../features/team-competitions/team-competitions.types';
+export type {
   FaqItem,
   SEOBlock,
   SEOContent,
 } from '../common/types/seo.types';
+
