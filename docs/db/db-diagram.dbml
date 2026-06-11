@@ -1,10 +1,11 @@
 // Ticket-Agent PostgreSQL schema
 // Paste into https://dbdiagram.io/d or import this file
-// Source: docs/db-schema.md
+// Source: backend/src/features/*/ *.schema.ts (Drizzle ORM)
+// Updated: 11 June 2026 — synced with actual Drizzle table definitions
 
 Project TicketAgent {
   database_type: 'PostgreSQL'
-  Note: '14 tables · Drizzle ORM · Render PostgreSQL'
+  Note: '8 implemented tables + 7 planned · Drizzle ORM · Render PostgreSQL'
 }
 
 // ─── Enums ───────────────────────────────────────────────────────────────────
@@ -24,7 +25,8 @@ Enum competition_type {
 Enum team_competition_status {
   active
   eliminated
-  winner
+  relegated
+  withdrawn
 }
 
 Enum supplier_type {
@@ -40,7 +42,6 @@ Enum supplier_origin {
   international
 }
 
-
 Enum min_price_currency {
   EUR
   USD
@@ -48,7 +49,7 @@ Enum min_price_currency {
   GBP
 }
 
-// ─── Geography ───────────────────────────────────────────────────────────────
+// ─── Geography (implemented) ───────────────────────────────────────────────────
 
 TableGroup geography {
   countries
@@ -56,7 +57,7 @@ TableGroup geography {
 }
 
 Table countries {
-  id int [pk, increment, note: 'serial PK exception']
+  id serial [pk, note: 'serial PK exception']
   name text [not null, note: 'Hebrew']
   name_en text
   slug text [not null, unique]
@@ -69,16 +70,21 @@ Table cities {
   slug text [not null, unique]
   name text [not null, note: 'Hebrew']
   name_en text
-  country_id int [not null, ref: > countries.id]
-  is_popular boolean [not null, default: false]
+  country_id integer [not null, ref: > countries.id, note: 'CASCADE on delete']
+  is_popular boolean [default: false]
   image_url text
-  seo_content jsonb [note: '[{ title, content, order? }]']
-  faqs jsonb [note: '[{ question, answer, order? }]']
+  seo_content jsonb [note: '{ title, content, order? }[]']
+  faqs jsonb [note: '{ question, answer, order? }[]']
   created_at timestamp [not null, default: `now()`]
   updated_at timestamp [not null, default: `now()`]
+
+  indexes {
+    country_id [name: 'cities_country_id_idx']
+    is_popular [name: 'cities_is_popular_idx']
+  }
 }
 
-// ─── Football core ─────────────────────────────────────────────────────────────
+// ─── Football core (implemented) ────────────────────────────────────────────────
 
 TableGroup football_core {
   competitions
@@ -92,26 +98,32 @@ Table competitions {
   name text [not null, note: 'Hebrew']
   name_en text
   slug text [not null, unique]
-  country_id int [not null, ref: > countries.id]
-  parent_competition_id uuid [ref: > competitions.id, note: 'cup→league / phase hierarchy']
+  country_id integer [not null, ref: > countries.id, note: 'CASCADE on delete']
+  parent_competition_id uuid [ref: > competitions.id, note: 'SET NULL on delete; cup→league / phase hierarchy']
   logo_url text
   image_url text
   banner_url text
   description text
   type competition_type [not null, default: 'League']
-  is_popular boolean [not null, default: false]
+  is_popular boolean [default: false]
   seo_content jsonb
   faqs jsonb
-  api_competition_id int [unique, note: 'API-Football ID']
+  api_competition_id integer [unique, note: 'API-Football ID']
   created_at timestamp [not null, default: `now()`]
   updated_at timestamp [not null, default: `now()`]
+
+  indexes {
+    country_id [name: 'competitions_country_id_idx']
+    parent_competition_id [name: 'competitions_parent_competition_id_idx']
+    is_popular [name: 'competitions_is_popular_idx']
+  }
 }
 
 Table teams {
   id uuid [pk, default: `gen_random_uuid()`]
   name text [not null, note: 'Hebrew']
   name_en text
-  code text [not null, note: '3-letter e.g. LIV']
+  code char(3) [not null, note: 'e.g. LIV']
   slug text [not null, unique]
   logo_url text
   shirt_image_url text
@@ -119,11 +131,17 @@ Table teams {
   banner_url text
   primary_color text [note: '#RRGGBB']
   secondary_color text
-  api_football_id int [unique]
-  is_popular boolean [not null, default: false]
+  api_football_id integer [unique]
+  is_popular boolean [default: false]
   seo_content jsonb
   created_at timestamp [not null, default: `now()`]
   updated_at timestamp [not null, default: `now()`]
+
+  indexes {
+    name [name: 'teams_name_idx']
+    name_en [name: 'teams_name_en_idx']
+    is_popular [name: 'teams_is_popular_idx']
+  }
 }
 
 Table venues {
@@ -134,34 +152,100 @@ Table venues {
   description text [note: 'Short description for meta tags']
   address text [note: 'Hebrew']
   address_en text
-  capacity int
+  capacity integer
   latitude decimal(9,6)
   longitude decimal(9,6)
   image_url text [note: 'Profile / square thumbnail image']
   banner_url text [note: 'Main banner / hero image for top of page']
   map_url text [note: 'Static seating chart image']
-  seo_content jsonb [note: '[{ title, content, order? }]']
-  faqs jsonb [note: '[{ question, answer, order? }]']
-  api_football_id int [unique]
+  seo_content jsonb [note: '{ title, content, order? }[]']
+  faqs jsonb [note: '{ question, answer, order? }[]']
+  api_football_id integer [unique]
   is_popular boolean [not null, default: false]
-  city_id uuid [not null, ref: > cities.id]
+  city_id uuid [not null, ref: > cities.id, note: 'CASCADE on delete']
   created_at timestamp [not null, default: `now()`]
   updated_at timestamp [not null, default: `now()`]
 
-  Indexes {
-    city_id
-    is_popular
+  indexes {
+    city_id [name: 'venues_city_id_idx']
+    is_popular [name: 'venues_is_popular_idx']
   }
 }
 
-Table competition_finals {
+Table team_competitions {
+  team_id uuid [not null, ref: > teams.id, note: 'CASCADE on delete']
+  competition_id uuid [not null, ref: > competitions.id, note: 'CASCADE on delete']
+  season text [not null, note: 'e.g. 2024/2025']
+  status team_competition_status [not null, default: 'active']
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp [not null, default: `now()`]
+
+  indexes {
+    (team_id, competition_id, season) [pk]
+    competition_id [name: 'team_competitions_competition_id_idx']
+    (competition_id, season) [name: 'team_competitions_competition_id_season_idx']
+    (team_id, season) [name: 'team_competitions_team_id_season_idx']
+  }
+}
+
+// ─── Events (football_events implemented; concert_events planned) ─────────────
+
+TableGroup events {
+  football_events
+  concert_events [note: 'PLANNED — not yet implemented']
+}
+
+Table football_events {
   id uuid [pk, default: `gen_random_uuid()`]
+  event_number bigint [unique, not null, default: `nextval('football_events_event_number_seq')`, note: 'Public URL ID, starts at 20000']
+  starts_at timestamptz [not null]
+  status event_status [not null, default: 'scheduled']
+  competition_id uuid [not null, ref: > competitions.id, note: 'RESTRICT on delete']
+  home_team_id uuid [ref: > teams.id, note: 'RESTRICT on delete']
+  away_team_id uuid [ref: > teams.id, note: 'RESTRICT on delete']
+  venue_id uuid [not null, ref: > venues.id, note: 'RESTRICT on delete']
+  home_team_name text [note: 'Display label when team is TBD. NULL when home_team_id is set']
+  away_team_name text [note: 'Display label when team is TBD. NULL when away_team_id is set']
+  has_tbd_team boolean [not null, default: false]
+  round text [note: 'e.g. Quarter Final, Group Stage']
+  round_number integer [note: 'Numeric order for sorting']
+  slug text [not null, unique]
+  tags text[]
+  is_hot boolean [not null, default: false]
+  api_football_external_id integer [unique]
+  football_data_external_id integer [unique]
+  min_price_amount decimal(10,2)
+  min_price_currency min_price_currency
+  min_price_sorting_ils decimal(10,2) [note: 'Sort-only, ILS normalized']
+  min_price_updated_at timestamptz
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
+
+  indexes {
+    (competition_id, starts_at) [name: 'football_events_competition_id_starts_at_idx']
+    (venue_id, starts_at) [name: 'football_events_venue_id_starts_at_idx']
+    (is_hot, starts_at) [name: 'football_events_is_hot_starts_at_idx']
+    min_price_sorting_ils [name: 'football_events_min_price_sorting_ils_idx']
+  }
+
+  note: '''
+    Constraints (applied in migration):
+    - CHECK (home_team_id IS NULL OR home_team_name IS NULL)
+    - CHECK (away_team_id IS NULL OR away_team_name IS NULL)
+    - Sequence: CREATE SEQUENCE football_events_event_number_seq START 20000
+  '''
+}
+
+// ─── Planned tables (not yet implemented in codebase) ────────────────────────
+
+Table competition_finals {
+  id uuid [pk, default: `gen_random_uuid()`, note: 'PLANNED']
   competition_id uuid [not null, ref: > competitions.id]
   season text [not null, note: 'e.g. 2025/2026']
   winner_id uuid [ref: > teams.id]
   runner_up_id uuid [ref: > teams.id]
   venue_id uuid [ref: > venues.id]
-  attendance int
+  attendance integer
   created_at timestamp [not null, default: `now()`]
   updated_at timestamp [not null, default: `now()`]
 
@@ -171,68 +255,8 @@ Table competition_finals {
   }
 }
 
-Table team_competitions {
-  team_id uuid [not null, ref: > teams.id]
-  competition_id uuid [not null, ref: > competitions.id]
-  season text [not null, note: 'e.g. 2024/2025']
-  status team_competition_status [not null, default: 'active']
-  is_current boolean [not null, default: true, note: 'active league tier']
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
-
-  indexes {
-    (team_id, competition_id, season) [pk]
-    (competition_id, season)
-    (team_id, season, is_current)
-  }
-}
-
-// ─── Events ────────────────────────────────────────────────────────────────────
-
-TableGroup events {
-  football_events
-  concert_events
-}
-
-Table football_events {
-  id uuid [pk, default: `gen_random_uuid()`]
-  date timestamp [not null]
-  status event_status [not null, default: 'scheduled']
-  rescheduled_from uuid [ref: > football_events.id]
-  competition_id uuid [not null, ref: > competitions.id]
-  home_team_id uuid [ref: > teams.id]
-  away_team_id uuid [ref: > teams.id]
-  venue_id uuid [not null, ref: > venues.id]
-  home_team_name text [note: 'TBD placeholder only']
-  away_team_name text
-  has_tbd_team boolean [not null, default: false]
-  round text
-  slug text [not null, unique]
-  round_number int
-  tags text[]
-  is_hot boolean [not null, default: false]
-  api_football_external_id int [unique]
-  min_price_amount decimal(10,2)
-  min_price_currency min_price_currency
-  min_price_sorting_ils decimal(10,2) [note: 'sort-only']
-  min_price_updated_at timestamp
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
-
-  indexes {
-    (status, date)
-    (competition_id, date)
-    (home_team_id, date)
-    (away_team_id, date)
-    (venue_id, date)
-    (is_hot, date)
-    min_price_sorting_ils
-    rescheduled_from
-  }
-}
-
 Table artists {
-  id uuid [pk, default: `gen_random_uuid()`]
+  id uuid [pk, default: `gen_random_uuid()`, note: 'PLANNED']
   name text [not null, unique, note: 'Hebrew']
   name_en text
   image_url text [not null]
@@ -240,18 +264,18 @@ Table artists {
   description text
   slug text [not null, unique]
   is_featured boolean [not null, default: false]
+  seo_content jsonb
+  faqs jsonb
   created_at timestamp [not null, default: `now()`]
   updated_at timestamp [not null, default: `now()`]
-  seo_content jsonb
-faqs jsonb
 }
 
 Table concert_events {
-  id uuid [pk, default: `gen_random_uuid()`]
+  id uuid [pk, default: `gen_random_uuid()`, note: 'PLANNED']
   slug text [not null, unique]
   artist_id uuid [not null, ref: > artists.id]
   tour_name text
-  date timestamp [not null]
+  starts_at timestamptz [not null]
   venue_id uuid [not null, ref: > venues.id]
   city_id uuid [not null, ref: > cities.id]
   status event_status [not null, default: 'scheduled']
@@ -260,22 +284,22 @@ Table concert_events {
   tags text[]
   min_price_amount decimal(10,2)
   min_price_currency min_price_currency
-  min_price_sorting_ils decimal(10,2) [note: 'sort-only']
-  min_price_updated_at timestamp
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  min_price_provider_id uuid [ref: > suppliers.id, note: 'Supplier who provided the min price']
+  min_price_sorting_ils decimal(10,2) [note: 'Sort-only, ILS normalized']
+  min_price_updated_at timestamptz
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [not null, default: `now()`]
 
   indexes {
-    (city_id, date)
-    (venue_id, date)
-    (status, date)
-    (is_hot, date)
+    (artist_id, starts_at)
+    (city_id, starts_at)
+    (venue_id, starts_at)
+    (is_hot, starts_at)
     min_price_sorting_ils
-    rescheduled_from
   }
 }
 
-// ─── Suppliers & lazy-update mappings ──────────────────────────────────────────
+// ─── Suppliers & lazy-update mappings (all planned) ──────────────────────────
 
 TableGroup suppliers_and_mappings {
   suppliers
@@ -286,7 +310,7 @@ TableGroup suppliers_and_mappings {
 }
 
 Table suppliers {
-  id uuid [pk, default: `gen_random_uuid()`]
+  id uuid [pk, default: `gen_random_uuid()`, note: 'PLANNED']
   name text [not null, unique, note: 'Hebrew']
   name_en text
   slug text [not null, unique]
@@ -298,7 +322,7 @@ Table suppliers {
   affiliate_link_base text
   supplier_countries text[] [note: 'ISO codes']
   supplier_competitions text[]
-  api_football_id int
+  api_football_id integer
   internal_code text
   external_rating jsonb [note: '{ rating, url, provider }']
   contact_info jsonb
@@ -306,14 +330,14 @@ Table suppliers {
   is_active boolean [not null, default: true]
   deactivated_at timestamp
   last_successful_sync_at timestamp
-  priority int [not null, default: 0]
+  priority integer [not null, default: 0]
   metadata jsonb
   created_at timestamp [not null, default: `now()`]
   updated_at timestamp [not null, default: `now()`]
 }
 
 Table team_supplier_mappings {
-  id uuid [pk, default: `gen_random_uuid()`]
+  id uuid [pk, default: `gen_random_uuid()`, note: 'PLANNED']
   team_id uuid [not null, ref: > teams.id]
   supplier_id uuid [not null, ref: > suppliers.id]
   supplier_team_name text
@@ -328,7 +352,7 @@ Table team_supplier_mappings {
 }
 
 Table venue_supplier_mappings {
-  id uuid [pk, default: `gen_random_uuid()`]
+  id uuid [pk, default: `gen_random_uuid()`, note: 'PLANNED']
   venue_id uuid [not null, ref: > venues.id]
   supplier_id uuid [not null, ref: > suppliers.id]
   supplier_venue_name text
@@ -343,7 +367,7 @@ Table venue_supplier_mappings {
 }
 
 Table football_event_supplier_mappings {
-  id uuid [pk, default: `gen_random_uuid()`]
+  id uuid [pk, default: `gen_random_uuid()`, note: 'PLANNED']
   football_event_id uuid [not null, ref: > football_events.id]
   supplier_id uuid [not null, ref: > suppliers.id]
   supplier_external_id text [not null]
@@ -358,7 +382,7 @@ Table football_event_supplier_mappings {
 }
 
 Table concert_event_supplier_mappings {
-  id uuid [pk, default: `gen_random_uuid()`]
+  id uuid [pk, default: `gen_random_uuid()`, note: 'PLANNED']
   concert_event_id uuid [not null, ref: > concert_events.id]
   supplier_id uuid [not null, ref: > suppliers.id]
   supplier_external_id text [not null]

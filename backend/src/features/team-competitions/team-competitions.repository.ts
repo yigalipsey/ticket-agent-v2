@@ -1,14 +1,12 @@
 import {
-  BadRequestException,
-  ConflictException,
   Inject,
   Injectable,
-  NotFoundException,
 } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { DRIZZLE } from '../../db/drizzle.provider';
 import type * as schema from '../../db/schema';
+import { handleDbError } from '../../db/error-handler';
 import { teamCompetitionsTable } from './team-competitions.schema';
 import { teamsTable } from '../teams/teams.schema';
 import { competitionsTable } from '../competitions/competitions.schema';
@@ -28,19 +26,7 @@ export class TeamCompetitionsRepository {
         .returning();
       return rows[0];
     } catch (err: unknown) {
-      if (typeof err === 'object' && err !== null && 'code' in err) {
-        const code = (err as { code: string }).code;
-        if (code === '23503') {
-          throw new BadRequestException(
-            'Invalid team_id or competition_id: referenced record does not exist',
-          );
-        }
-        if (code === '23505') {
-          throw new ConflictException(
-            'This team is already associated with this competition for the specified season',
-          );
-        }
-      }
+      handleDbError(err, { entityName: 'team competition' });
       throw err;
     }
   }
@@ -63,12 +49,7 @@ export class TeamCompetitionsRepository {
       )
       .returning();
 
-    if (rows.length === 0) {
-      throw new NotFoundException(
-        'Team competition mapping not found for the specified team, competition, and season',
-      );
-    }
-    return rows[0];
+    return rows[0] ?? null;
   }
 
   async delete(teamId: string, competitionId: string, season: string) {
@@ -83,12 +64,7 @@ export class TeamCompetitionsRepository {
       )
       .returning();
 
-    if (rows.length === 0) {
-      throw new NotFoundException(
-        'Team competition mapping not found for the specified team, competition, and season',
-      );
-    }
-    return rows[0];
+    return rows[0] ?? null;
   }
 
   async findActiveCompetitionsForTeam(teamId: string) {

@@ -41,21 +41,6 @@ export class CompetitionsController {
   @Post()
   @HttpCode(201)
   create(@Body() dto: CreateCompetitionDto) {
-    return this.competitionsService.create({
-      slug: dto.slug,
-      name: dto.name,
-      name_en: dto.name_en,
-      country_id: dto.countryId,
-      parent_competition_id: dto.parentCompetitionId,
-      logo_url: dto.logoUrl,
-      image_url: dto.imageUrl,
-      banner_url: dto.backgroundImage,
-      description: dto.description,
-      type: dto.type,
-      is_popular: dto.isPopular,
-      seo_content: dto.seoContent,
-      faqs: dto.faqs,
-      api_competition_id: dto.apiCompetitionId,
-    });
+    return this.competitionsService.create(dto);
   }
 }

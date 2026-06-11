@@ -103,7 +103,7 @@ describe('Team Competitions E2E', () => {
     });
 
     expect(res.status).toBe(409);
-    expect(res.body.message).toContain('already associated');
+    expect(res.body.message).toContain('team_id already exists');
   });
 
   it('POST /team-competitions — invalid season format returns 400', async () => {

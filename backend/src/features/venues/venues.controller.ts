@@ -9,21 +9,18 @@ import {
 } from '@nestjs/common';
 import { VenuesService } from './venues.service';
 import { CreateVenueDto } from './dto/create-venue.dto';
+import { FindVenuesQueryDto } from './dto/find-venues-query.dto';
 
 @Controller('venues')
 export class VenuesController {
   constructor(private readonly venuesService: VenuesService) {}
 
   @Get()
-  findAll(
-    @Query('popular') popular?: string,
-    @Query('search') search?: string,
-    @Query('cityId') cityId?: string,
-  ) {
+  findAll(@Query() query: FindVenuesQueryDto) {
     return this.venuesService.findAll({
-      popularOnly: popular === 'true',
-      search,
-      cityId,
+      popularOnly: query.popular === 'true',
+      search: query.search,
+      cityId: query.cityId,
     });
   }
 

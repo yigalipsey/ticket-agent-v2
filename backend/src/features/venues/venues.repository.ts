@@ -1,8 +1,9 @@
-import { BadRequestException, ConflictException, Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { eq, or, ilike, and } from 'drizzle-orm';
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { DRIZZLE } from '../../db/drizzle.provider';
 import type * as schema from '../../db/schema';
+import { handleDbError } from '../../db/error-handler';
 import { venuesTable } from './venues.schema';
 import type { NewVenue } from './venues.types';
 
@@ -60,28 +61,7 @@ export class VenuesRepository {
         .returning();
       return rows[0];
     } catch (err: unknown) {
-      if (typeof err === 'object' && err !== null && 'code' in err) {
-        const code = (err as { code: string }).code;
-        if (code === '23503') {
-          throw new BadRequestException(
-            'Invalid city_id: referenced city does not exist',
-          );
-        }
-        if (code === '23505') {
-          const detail = (err as { detail?: string }).detail || '';
-          if (detail.includes('slug')) {
-            throw new ConflictException('A venue with this slug already exists');
-          }
-          if (detail.includes('api_football_id')) {
-            throw new ConflictException(
-              'A venue with this api_football_id already exists',
-            );
-          }
-          throw new ConflictException(
-            'A venue with this slug or api_football_id already exists',
-          );
-        }
-      }
+      handleDbError(err, { entityName: 'venue' });
       throw err;
     }
   }

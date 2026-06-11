@@ -157,7 +157,7 @@ describe('Venues E2E', () => {
       cityId: '00000000-0000-0000-0000-000000000000',
     });
     expect(res.status).toBe(400);
-    expect(res.body.message).toContain('referenced city does not exist');
+    expect(res.body.message).toContain('Invalid city_id: referenced record does not exist');
   });
 
   describe('GET /venues - filtering and searching', () => {
