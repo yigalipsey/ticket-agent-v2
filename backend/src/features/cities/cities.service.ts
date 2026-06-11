@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { CitiesRepository } from "./cities.repository";
 import type { NewCity } from "./cities.types";
+import { translateDomainError } from "../../db/error-handler";
 
 @Injectable()
 export class CitiesService {
@@ -18,7 +19,12 @@ export class CitiesService {
     return city;
   }
 
-  create(dto: NewCity) {
-    return this.citiesRepository.create(dto);
+  async create(dto: NewCity) {
+    try {
+      return await this.citiesRepository.create(dto);
+    } catch (err) {
+      translateDomainError(err);
+      throw err;
+    }
   }
 }

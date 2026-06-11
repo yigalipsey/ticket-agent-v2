@@ -1,13 +1,9 @@
-import {
-  BadRequestException,
-  ConflictException,
-  Inject,
-  Injectable,
-} from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { DRIZZLE } from '../../db/drizzle.provider';
 import type * as schema from '../../db/schema';
+import { handleDbError } from '../../db/error-handler';
 import { competitionsTable } from './competitions.schema';
 import type { CompetitionType, NewCompetition } from './competitions.types';
 import { teamsTable } from '../teams/teams.schema';
@@ -99,19 +95,7 @@ export class CompetitionsRepository {
         .returning();
       return rows[0];
     } catch (err: unknown) {
-      if (typeof err === 'object' && err !== null && 'code' in err) {
-        const code = (err as { code: string }).code;
-        if (code === '23503') {
-          throw new BadRequestException(
-            'Invalid country_id or parent_competition_id: referenced record does not exist',
-          );
-        }
-        if (code === '23505') {
-          throw new ConflictException(
-            'A competition with this slug or api_competition_id already exists',
-          );
-        }
-      }
+      handleDbError(err, { entityName: 'competition' });
       throw err;
     }
   }

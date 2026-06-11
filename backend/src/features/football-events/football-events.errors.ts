@@ -1,40 +1,12 @@
 /**
- * Base class for all football-event domain errors.
- * The repository throws these; the service translates them to HTTP exceptions.
- * This keeps HTTP concerns out of the data layer.
+ * Re-exports from the shared DB error-handling module.
+ *
+ * Kept for backward compatibility — new code should import directly from
+ * `../../db/error-handler`.
  */
-export class FootballEventDomainError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = this.constructor.name;
-    // Required for proper `instanceof` checks when extending built-in Error in TS.
-    Object.setPrototypeOf(this, new.target.prototype);
-  }
-}
-
-export class DuplicateFieldError extends FootballEventDomainError {
-  constructor(
-    public readonly field: string,
-    message: string,
-  ) {
-    super(message);
-  }
-}
-
-export class InvalidForeignKeyError extends FootballEventDomainError {
-  constructor(
-    public readonly field: string,
-    message: string,
-  ) {
-    super(message);
-  }
-}
-
-export class CheckConstraintViolationError extends FootballEventDomainError {
-  constructor(
-    public readonly constraint: string,
-    message: string,
-  ) {
-    super(message);
-  }
-}
+export {
+  DbDomainError as FootballEventDomainError,
+  DuplicateFieldError,
+  InvalidForeignKeyError,
+  CheckConstraintViolationError,
+} from '../../db/error-handler';

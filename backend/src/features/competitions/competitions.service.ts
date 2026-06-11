@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CompetitionsRepository } from './competitions.repository';
 import type { CompetitionType, NewCompetition } from './competitions.types';
+import { translateDomainError } from '../../db/error-handler';
 
 @Injectable()
 export class CompetitionsService {
@@ -22,7 +23,12 @@ export class CompetitionsService {
     return competition;
   }
 
-  create(dto: NewCompetition) {
-    return this.competitionsRepository.create(dto);
+  async create(dto: NewCompetition) {
+    try {
+      return await this.competitionsRepository.create(dto);
+    } catch (err) {
+      translateDomainError(err);
+      throw err;
+    }
   }
 }

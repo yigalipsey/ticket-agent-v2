@@ -1,8 +1,9 @@
-import { ConflictException, Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { DRIZZLE } from '../../db/drizzle.provider';
 import type * as schema from '../../db/schema';
+import { handleDbError } from '../../db/error-handler';
 import type { NewCountry } from './countries.types';
 import { countriesTable } from './countries.schema';
 
@@ -32,14 +33,7 @@ export class CountriesRepository {
         .returning();
       return rows[0];
     } catch (err: unknown) {
-      if (
-        typeof err === 'object' &&
-        err !== null &&
-        'code' in err &&
-        (err as { code: string }).code === '23505'
-      ) {
-        throw new ConflictException('A country with this slug already exists');
-      }
+      handleDbError(err, { entityName: 'country' });
       throw err;
     }
   }

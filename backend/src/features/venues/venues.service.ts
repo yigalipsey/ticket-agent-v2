@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { VenuesRepository } from './venues.repository';
 import type { CreateVenueDto } from './dto/create-venue.dto';
 import type { NewVenue } from './venues.types';
+import { translateDomainError } from '../../db/error-handler';
 
 @Injectable()
 export class VenuesService {
@@ -19,7 +20,7 @@ export class VenuesService {
     return venue;
   }
 
-  create(dto: CreateVenueDto) {
+  async create(dto: CreateVenueDto) {
     const newVenue: NewVenue = {
       slug: dto.slug,
       name: dto.name,
@@ -40,6 +41,11 @@ export class VenuesService {
       city_id: dto.cityId,
     };
 
-    return this.venuesRepository.create(newVenue);
+    try {
+      return await this.venuesRepository.create(newVenue);
+    } catch (err) {
+      translateDomainError(err);
+      throw err;
+    }
   }
 }

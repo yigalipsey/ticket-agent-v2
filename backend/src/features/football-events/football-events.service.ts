@@ -15,7 +15,8 @@ import {
   CheckConstraintViolationError,
   DuplicateFieldError,
   InvalidForeignKeyError,
-} from "./football-events.errors";
+  translateDomainError,
+} from "../../db/error-handler";
 
 /** Hard cap on slug collision suffix attempts to prevent infinite loops. */
 const MAX_SLUG_ATTEMPTS = 100;

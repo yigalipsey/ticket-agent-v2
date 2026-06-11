@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TeamCompetitionsRepository } from './team-competitions.repository';
 import type { CreateTeamCompetitionDto } from './dto/create-team-competition.dto';
+import { translateDomainError } from '../../db/error-handler';
 
 @Injectable()
 export class TeamCompetitionsService {
@@ -9,12 +10,17 @@ export class TeamCompetitionsService {
   ) {}
 
   async create(dto: CreateTeamCompetitionDto) {
-    return this.teamCompetitionsRepository.create({
-      team_id: dto.teamId,
-      competition_id: dto.competitionId,
-      season: dto.season,
-      status: dto.status ?? 'active',
-    });
+    try {
+      return await this.teamCompetitionsRepository.create({
+        team_id: dto.teamId,
+        competition_id: dto.competitionId,
+        season: dto.season,
+        status: dto.status ?? 'active',
+      });
+    } catch (err) {
+      translateDomainError(err);
+      throw err;
+    }
   }
 
   async updateStatus(

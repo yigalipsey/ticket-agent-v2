@@ -6,11 +6,7 @@ import type * as schema from '../../db/schema';
 import { footballEventsTable } from './football-events.schema';
 import { teamsTable } from '../teams/teams.schema';
 import type { FootballEvent, NewFootballEvent, EventStatus } from './football-events.types';
-import {
-  CheckConstraintViolationError,
-  DuplicateFieldError,
-  InvalidForeignKeyError,
-} from './football-events.errors';
+import { handleDbError } from '../../db/error-handler';
 
 type DrizzleDb = PostgresJsDatabase<typeof schema>;
 
@@ -114,7 +110,7 @@ export class FootballEventsRepository {
         .returning();
       return rows[0];
     } catch (err: unknown) {
-      this.handleDbError(err);
+      handleDbError(err, { entityName: 'football event' });
       throw err;
     }
   }
@@ -128,92 +124,8 @@ export class FootballEventsRepository {
         .returning();
       return rows[0] ?? null;
     } catch (err: unknown) {
-      this.handleDbError(err);
+      handleDbError(err, { entityName: 'football event' });
       throw err;
-    }
-  }
-
-  /**
-   * Translates Postgres error codes into domain errors.
-   * Intentionally throws domain errors (not HTTP exceptions) — the service is
-   * responsible for translating those to the correct HTTP response.
-   */
-  private handleDbError(err: unknown): void {
-    if (typeof err !== 'object' || err === null || !('code' in err)) return;
-
-    const { code, detail = '', constraint = '' } = err as {
-      code: string;
-      detail?: string;
-      constraint?: string;
-    };
-
-    // Check constraint violation
-    if (code === '23514') {
-      if (constraint.includes('home_team_xor_check') || detail.includes('home_team')) {
-        throw new CheckConstraintViolationError(
-          'home_team_xor_check',
-          'Exactly one of home_team_id or home_team_name must be set.',
-        );
-      }
-      if (constraint.includes('away_team_xor_check') || detail.includes('away_team')) {
-        throw new CheckConstraintViolationError(
-          'away_team_xor_check',
-          'Exactly one of away_team_id or away_team_name must be set.',
-        );
-      }
-      throw new CheckConstraintViolationError('unknown', 'Database check constraint violated.');
-    }
-
-    // Foreign key violation
-    if (code === '23503') {
-      if (detail.includes('competition_id')) {
-        throw new InvalidForeignKeyError(
-          'competition_id',
-          'Invalid competition_id: referenced competition does not exist',
-        );
-      }
-      if (detail.includes('venue_id')) {
-        throw new InvalidForeignKeyError(
-          'venue_id',
-          'Invalid venue_id: referenced venue does not exist',
-        );
-      }
-      if (detail.includes('home_team_id')) {
-        throw new InvalidForeignKeyError(
-          'home_team_id',
-          'Invalid home_team_id: referenced home team does not exist',
-        );
-      }
-      if (detail.includes('away_team_id')) {
-        throw new InvalidForeignKeyError(
-          'away_team_id',
-          'Invalid away_team_id: referenced away team does not exist',
-        );
-      }
-      throw new InvalidForeignKeyError('unknown', 'Foreign key constraint violated.');
-    }
-
-    // Unique constraint violation
-    if (code === '23505') {
-      if (detail.includes('slug')) {
-        throw new DuplicateFieldError('slug', 'An event with this slug already exists');
-      }
-      if (detail.includes('event_number')) {
-        throw new DuplicateFieldError('event_number', 'An event with this event_number already exists');
-      }
-      if (detail.includes('api_football_external_id')) {
-        throw new DuplicateFieldError(
-          'api_football_external_id',
-          'An event with this api_football_external_id already exists',
-        );
-      }
-      if (detail.includes('football_data_external_id')) {
-        throw new DuplicateFieldError(
-          'football_data_external_id',
-          'An event with this football_data_external_id already exists',
-        );
-      }
-      throw new DuplicateFieldError('unknown', 'A unique constraint was violated.');
     }
   }
 }

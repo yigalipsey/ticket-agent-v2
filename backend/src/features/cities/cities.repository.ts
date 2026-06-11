@@ -1,13 +1,9 @@
-import {
-  BadRequestException,
-  ConflictException,
-  Inject,
-  Injectable,
-} from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { DRIZZLE } from '../../db/drizzle.provider';
 import type * as schema from '../../db/schema';
+import { handleDbError } from '../../db/error-handler';
 import { citiesTable } from './cities.schema';
 import type { NewCity } from './cities.types';
 
@@ -43,17 +39,7 @@ export class CitiesRepository {
         .returning();
       return rows[0];
     } catch (err: unknown) {
-      if (typeof err === 'object' && err !== null && 'code' in err) {
-        const code = (err as { code: string }).code;
-        if (code === '23503') {
-          throw new BadRequestException(
-            'Invalid country_id: referenced country does not exist',
-          );
-        }
-        if (code === '23505') {
-          throw new ConflictException('A city with this slug already exists');
-        }
-      }
+      handleDbError(err, { entityName: 'city' });
       throw err;
     }
   }

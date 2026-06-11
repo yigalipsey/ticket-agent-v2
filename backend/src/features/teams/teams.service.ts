@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { TeamsRepository } from './teams.repository';
 import type { CreateTeamDto } from './dto/create-team.dto';
 import type { NewTeam } from './teams.types';
+import { translateDomainError } from '../../db/error-handler';
 
 @Injectable()
 export class TeamsService {
@@ -19,7 +20,7 @@ export class TeamsService {
     return team;
   }
 
-  create(dto: CreateTeamDto) {
+  async create(dto: CreateTeamDto) {
     const codeNormalized = dto.code.toUpperCase();
     const primaryColorNormalized = dto.primaryColor?.toUpperCase();
     const secondaryColorNormalized = dto.secondaryColor?.toUpperCase();
@@ -40,6 +41,11 @@ export class TeamsService {
       seo_content: dto.seoContent,
     };
 
-    return this.teamsRepository.create(newTeam);
+    try {
+      return await this.teamsRepository.create(newTeam);
+    } catch (err) {
+      translateDomainError(err);
+      throw err;
+    }
   }
 }

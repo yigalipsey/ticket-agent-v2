@@ -1,8 +1,9 @@
-import { ConflictException, Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { eq, or, ilike, and } from 'drizzle-orm';
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { DRIZZLE } from '../../db/drizzle.provider';
 import type * as schema from '../../db/schema';
+import { handleDbError } from '../../db/error-handler';
 import { teamsTable } from './teams.schema';
 import type { NewTeam } from './teams.types';
 import { competitionsTable } from '../competitions/competitions.schema';
@@ -96,23 +97,7 @@ export class TeamsRepository {
         .returning();
       return rows[0];
     } catch (err: unknown) {
-      if (typeof err === 'object' && err !== null && 'code' in err) {
-        const code = (err as { code: string }).code;
-        if (code === '23505') {
-          const detail = (err as { detail?: string }).detail || '';
-          if (detail.includes('slug')) {
-            throw new ConflictException('A team with this slug already exists');
-          }
-          if (detail.includes('api_football_id')) {
-            throw new ConflictException(
-              'A team with this api_football_id already exists',
-            );
-          }
-          throw new ConflictException(
-            'A team with this slug or api_football_id already exists',
-          );
-        }
-      }
+      handleDbError(err, { entityName: 'team' });
       throw err;
     }
   }
