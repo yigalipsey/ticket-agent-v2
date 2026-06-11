@@ -12,11 +12,7 @@ import { TeamsService } from "../teams/teams.service";
 import type { CreateFootballEventDto } from "./dto/create-football-event.dto";
 import type { UpdateFootballEventDto } from "./dto/update-football-event.dto";
 import type { NewFootballEvent, FootballEvent } from "./football-events.types";
-import {
-  CheckConstraintViolationError,
-  DuplicateFieldError,
-  InvalidForeignKeyError,
-} from "../../db/error-handler";
+import { translateDomainError } from "../../db/error-handler";
 
 /** Hard cap on slug collision suffix attempts to prevent infinite loops. */
 const MAX_SLUG_ATTEMPTS = 100;
@@ -89,7 +85,7 @@ export class FootballEventsService {
     try {
       return await this.repository.create(newEvent);
     } catch (err) {
-      this.translateDomainError(err);
+      translateDomainError(err);
       throw err;
     }
   }
@@ -141,7 +137,7 @@ export class FootballEventsService {
       }
       return updated;
     } catch (err) {
-      this.translateDomainError(err);
+      translateDomainError(err);
       throw err;
     }
   }
@@ -312,23 +308,6 @@ export class FootballEventsService {
         : null;
 
     return patch;
-  }
-
-  /**
-   * Translates domain errors thrown by the repository into HTTP exceptions.
-   * Either throws a new HTTP exception or returns void (letting the original
-   * error re-throw at the call site).
-   */
-  private translateDomainError(err: unknown): void {
-    if (err instanceof DuplicateFieldError) {
-      throw new ConflictException(err.message);
-    }
-    if (
-      err instanceof InvalidForeignKeyError ||
-      err instanceof CheckConstraintViolationError
-    ) {
-      throw new BadRequestException(err.message);
-    }
   }
 
   private slugify(text: string): string {
