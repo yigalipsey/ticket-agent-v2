@@ -81,3 +81,9 @@ Teams have no direct country column; location is inferred via `team_competitions
 ## Lazy Update Strategy
 
 Supplier mapping tables (`*_supplier_mappings`) are lookup indexes from `(supplier_id, supplier_external_id)` → internal UUID. Updates are applied in **batched deferred writes** during ingest — not per HTTP request. No `last_synced_at` in v1.
+
+## Mapping Verification and Moderation
+
+Supplier mappings (`*_supplier_mappings`) follow a strict auto-capture with moderation gate model:
+- **Auto-Capture**: The background ingest worker automatically creates new mappings when it discovers unknown `supplier_external_id`s, capturing the raw `supplier_team_name` and setting `is_verified: false`.
+- **Moderation Gate**: Any tickets or events associated with an `is_verified: false` mapping are completely blocked/ignored during sync until an admin manually flips it to `is_verified: true`. This ensures absolute data integrity so tickets are never routed to the wrong internal team.

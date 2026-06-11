@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   ConflictException,
+  Inject,
   Injectable,
   NotFoundException,
 } from "@nestjs/common";
@@ -8,7 +9,8 @@ import {
   FootballEventsRepository,
   FindAllOptions,
 } from "./football-events.repository";
-import { TeamsService } from "../teams/teams.service";
+import type { TeamLookupPort } from "../../common/ports/team-lookup.port";
+import { TEAM_LOOKUP_PORT } from "../../common/ports/team-lookup.port";
 import type { CreateFootballEventDto } from "./dto/create-football-event.dto";
 import type { UpdateFootballEventDto } from "./dto/update-football-event.dto";
 import type { NewFootballEvent, FootballEvent } from "./football-events.types";
@@ -21,7 +23,7 @@ const MAX_SLUG_ATTEMPTS = 100;
 export class FootballEventsService {
   constructor(
     private readonly repository: FootballEventsRepository,
-    private readonly teamsService: TeamsService,
+    @Inject(TEAM_LOOKUP_PORT) private readonly teamLookup: TeamLookupPort,
   ) {}
 
   findAll(options?: FindAllOptions): Promise<FootballEvent[]> {
@@ -175,15 +177,16 @@ export class FootballEventsService {
       let homePart = dto.homeTeamName ? this.slugify(dto.homeTeamName) : "";
       let awayPart = dto.awayTeamName ? this.slugify(dto.awayTeamName) : "";
 
-      if (dto.homeTeamId && !homePart) {
-        const teamSlug = await this.teamsService.findSlugById(dto.homeTeamId);
-        if (teamSlug) homePart = teamSlug;
-      }
-
-      if (dto.awayTeamId && !awayPart) {
-        const teamSlug = await this.teamsService.findSlugById(dto.awayTeamId);
-        if (teamSlug) awayPart = teamSlug;
-      }
+      const [homeTeamSlug, awayTeamSlug] = await Promise.all([
+        dto.homeTeamId && !homePart
+          ? this.teamLookup.findSlugById(dto.homeTeamId)
+          : null,
+        dto.awayTeamId && !awayPart
+          ? this.teamLookup.findSlugById(dto.awayTeamId)
+          : null,
+      ]);
+      if (homeTeamSlug) homePart = homeTeamSlug;
+      if (awayTeamSlug) awayPart = awayTeamSlug;
 
       const datePart = dto.startsAt.split("T")[0];
       baseSlug = `${homePart}-vs-${awayPart}-${datePart}`

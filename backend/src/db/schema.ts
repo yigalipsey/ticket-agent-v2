@@ -7,3 +7,4 @@ export * from '../features/venues/venues.schema';
 export * from '../features/team-competitions/team-competitions.schema';
 export * from '../features/football-events/football-events.schema';
 export * from '../features/suppliers/suppliers.schema';
+export * from '../features/suppliers/mappings/team-mapping.schema';

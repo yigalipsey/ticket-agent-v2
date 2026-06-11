@@ -50,6 +50,15 @@ export class TeamsRepository {
     return rows[0] ?? null;
   }
 
+  async findById(teamId: string) {
+    const rows = await this.db
+      .select()
+      .from(teamsTable)
+      .where(eq(teamsTable.id, teamId))
+      .limit(1);
+    return rows[0] ?? null;
+  }
+
   async findSlugById(teamId: string): Promise<string | null> {
     const rows = await this.db
       .select({ slug: teamsTable.slug })
