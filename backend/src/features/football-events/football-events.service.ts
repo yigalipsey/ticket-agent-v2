@@ -8,6 +8,7 @@ import {
   FootballEventsRepository,
   FindAllOptions,
 } from "./football-events.repository";
+import { TeamsService } from "../teams/teams.service";
 import type { CreateFootballEventDto } from "./dto/create-football-event.dto";
 import type { UpdateFootballEventDto } from "./dto/update-football-event.dto";
 import type { NewFootballEvent, FootballEvent } from "./football-events.types";
@@ -15,7 +16,6 @@ import {
   CheckConstraintViolationError,
   DuplicateFieldError,
   InvalidForeignKeyError,
-  translateDomainError,
 } from "../../db/error-handler";
 
 /** Hard cap on slug collision suffix attempts to prevent infinite loops. */
@@ -23,7 +23,10 @@ const MAX_SLUG_ATTEMPTS = 100;
 
 @Injectable()
 export class FootballEventsService {
-  constructor(private readonly repository: FootballEventsRepository) {}
+  constructor(
+    private readonly repository: FootballEventsRepository,
+    private readonly teamsService: TeamsService,
+  ) {}
 
   findAll(options?: FindAllOptions): Promise<FootballEvent[]> {
     return this.repository.findAll(options);
@@ -177,12 +180,12 @@ export class FootballEventsService {
       let awayPart = dto.awayTeamName ? this.slugify(dto.awayTeamName) : "";
 
       if (dto.homeTeamId && !homePart) {
-        const teamSlug = await this.repository.findTeamSlugById(dto.homeTeamId);
+        const teamSlug = await this.teamsService.findSlugById(dto.homeTeamId);
         if (teamSlug) homePart = teamSlug;
       }
 
       if (dto.awayTeamId && !awayPart) {
-        const teamSlug = await this.repository.findTeamSlugById(dto.awayTeamId);
+        const teamSlug = await this.teamsService.findSlugById(dto.awayTeamId);
         if (teamSlug) awayPart = teamSlug;
       }
 

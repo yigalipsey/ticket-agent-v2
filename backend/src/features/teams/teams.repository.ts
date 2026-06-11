@@ -6,8 +6,6 @@ import type * as schema from '../../db/schema';
 import { handleDbError } from '../../db/error-handler';
 import { teamsTable } from './teams.schema';
 import type { NewTeam } from './teams.types';
-import { competitionsTable } from '../competitions/competitions.schema';
-import { teamCompetitionsTable } from '../team-competitions/team-competitions.schema';
 
 
 type DrizzleDb = PostgresJsDatabase<typeof schema>;
@@ -49,44 +47,16 @@ export class TeamsRepository {
       .select()
       .from(teamsTable)
       .where(eq(teamsTable.slug, slug));
-    
-    const team = rows[0] ?? null;
-    if (!team) {
-      return null;
-    }
+    return rows[0] ?? null;
+  }
 
-    const competitions = await this.db
-      .select({
-        id: competitionsTable.id,
-        name: competitionsTable.name,
-        name_en: competitionsTable.name_en,
-        slug: competitionsTable.slug,
-        logo_url: competitionsTable.logo_url,
-        image_url: competitionsTable.image_url,
-        banner_url: competitionsTable.banner_url,
-        description: competitionsTable.description,
-        type: competitionsTable.type,
-        is_popular: competitionsTable.is_popular,
-        api_competition_id: competitionsTable.api_competition_id,
-        created_at: competitionsTable.created_at,
-        updated_at: competitionsTable.updated_at,
-      })
-      .from(teamCompetitionsTable)
-      .innerJoin(
-        competitionsTable,
-        eq(teamCompetitionsTable.competition_id, competitionsTable.id),
-      )
-      .where(
-        and(
-          eq(teamCompetitionsTable.team_id, team.id),
-          eq(teamCompetitionsTable.status, 'active'),
-        ),
-      );
-
-    return {
-      ...team,
-      competitions,
-    };
+  async findSlugById(teamId: string): Promise<string | null> {
+    const rows = await this.db
+      .select({ slug: teamsTable.slug })
+      .from(teamsTable)
+      .where(eq(teamsTable.id, teamId))
+      .limit(1);
+    return rows[0]?.slug ?? null;
   }
 
   async create(data: NewTeam) {

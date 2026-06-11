@@ -4,7 +4,6 @@ import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { DRIZZLE } from '../../db/drizzle.provider';
 import type * as schema from '../../db/schema';
 import { footballEventsTable } from './football-events.schema';
-import { teamsTable } from '../teams/teams.schema';
 import type { FootballEvent, NewFootballEvent, EventStatus } from './football-events.types';
 import { handleDbError } from '../../db/error-handler';
 
@@ -25,20 +24,6 @@ export type FindAllOptions = {
 @Injectable()
 export class FootballEventsRepository {
   constructor(@Inject(DRIZZLE) private readonly db: DrizzleDb) {}
-
-  /**
-   * Used by the service for auto-generating event slugs from a team's canonical slug.
-   * Still cross-feature, but intentionally kept here because slug generation requires
-   * a team lookup and this is the only remaining cross-feature access.
-   */
-  async findTeamSlugById(teamId: string): Promise<string | null> {
-    const rows = await this.db
-      .select({ slug: teamsTable.slug })
-      .from(teamsTable)
-      .where(eq(teamsTable.id, teamId))
-      .limit(1);
-    return rows[0]?.slug ?? null;
-  }
 
   async checkSlugExists(slug: string, excludeId?: string): Promise<boolean> {
     const conditions = [eq(footballEventsTable.slug, slug)];

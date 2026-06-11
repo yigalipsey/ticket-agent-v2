@@ -1,12 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { TeamsRepository } from './teams.repository';
+import { TeamCompetitionsService } from '../team-competitions/team-competitions.service';
 import type { CreateTeamDto } from './dto/create-team.dto';
 import type { NewTeam } from './teams.types';
 import { translateDomainError } from '../../db/error-handler';
 
 @Injectable()
 export class TeamsService {
-  constructor(private readonly teamsRepository: TeamsRepository) { }
+  constructor(
+    private readonly teamsRepository: TeamsRepository,
+    private readonly teamCompetitionsService: TeamCompetitionsService,
+  ) {}
 
   findAll(options?: { popularOnly?: boolean; search?: string }) {
     return this.teamsRepository.findAll(options);
@@ -17,7 +21,18 @@ export class TeamsService {
     if (!team) {
       throw new NotFoundException(`Team with slug "${slug}" not found`);
     }
-    return team;
+
+    const competitions =
+      await this.teamCompetitionsService.findActiveCompetitionsForTeam(team.id);
+
+    return {
+      ...team,
+      competitions,
+    };
+  }
+
+  async findSlugById(teamId: string): Promise<string | null> {
+    return this.teamsRepository.findSlugById(teamId);
   }
 
   async create(dto: CreateTeamDto) {

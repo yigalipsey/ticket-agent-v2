@@ -56,4 +56,14 @@ export class TeamCompetitionsService {
     }
     return result;
   }
+
+  async findActiveTeamsForCompetition(competitionId: string) {
+    return this.teamCompetitionsRepository.findActiveTeamsForCompetition(
+      competitionId,
+    );
+  }
+
+  async findActiveCompetitionsForTeam(teamId: string) {
+    return this.teamCompetitionsRepository.findActiveCompetitionsForTeam(teamId);
+  }
 }

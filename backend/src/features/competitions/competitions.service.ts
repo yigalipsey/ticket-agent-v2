@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CompetitionsRepository } from './competitions.repository';
+import { TeamCompetitionsService } from '../team-competitions/team-competitions.service';
 import type { CompetitionType, NewCompetition } from './competitions.types';
 import type { CreateCompetitionDto } from './dto/create-competition.dto';
 import { translateDomainError } from '../../db/error-handler';
@@ -8,6 +9,7 @@ import { translateDomainError } from '../../db/error-handler';
 export class CompetitionsService {
   constructor(
     private readonly competitionsRepository: CompetitionsRepository,
+    private readonly teamCompetitionsService: TeamCompetitionsService,
   ) {}
 
   findAll(options?: { popularOnly?: boolean; type?: CompetitionType }) {
@@ -21,7 +23,16 @@ export class CompetitionsService {
         `Competition with slug "${slug}" not found`,
       );
     }
-    return competition;
+
+    const teams =
+      await this.teamCompetitionsService.findActiveTeamsForCompetition(
+        competition.id,
+      );
+
+    return {
+      ...competition,
+      teams,
+    };
   }
 
   async create(dto: CreateCompetitionDto) {
