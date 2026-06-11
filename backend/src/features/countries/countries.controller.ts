@@ -16,5 +16,9 @@ export class CountriesController {
     return this.countriesService.findBySlug(slug);
   }
 
-  ב;
+  @Post()
+  @HttpCode(201)
+  create(@Body() dto: CreateCountryDto) {
+    return this.countriesService.create(dto);
+  }
 }

@@ -1,4 +1,12 @@
-import { Body, Controller, Get, HttpCode, Param, Post, Query } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Query,
+} from "@nestjs/common";
 import { CitiesService } from "./cities.service";
 import { CreateCityDto } from "./dto/create-city.dto";
 
@@ -19,15 +27,6 @@ export class CitiesController {
   @Post()
   @HttpCode(201)
   create(@Body() dto: CreateCityDto) {
-    return this.citiesService.create({
-      slug: dto.slug,
-      name: dto.name,
-      name_en: dto.name_en,
-      country_id: dto.countryId,
-      is_popular: dto.isPopular,
-      image_url: dto.imageUrl,
-      seo_content: dto.seoContent,
-      faqs: dto.faqs,
-    });
+    return this.citiesService.create(dto);
   }
 }

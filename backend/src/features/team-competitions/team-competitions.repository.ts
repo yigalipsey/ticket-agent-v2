@@ -1,7 +1,6 @@
 import {
   Inject,
   Injectable,
-  NotFoundException,
 } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
@@ -50,12 +49,7 @@ export class TeamCompetitionsRepository {
       )
       .returning();
 
-    if (rows.length === 0) {
-      throw new NotFoundException(
-        'Team competition mapping not found for the specified team, competition, and season',
-      );
-    }
-    return rows[0];
+    return rows[0] ?? null;
   }
 
   async delete(teamId: string, competitionId: string, season: string) {
@@ -70,12 +64,7 @@ export class TeamCompetitionsRepository {
       )
       .returning();
 
-    if (rows.length === 0) {
-      throw new NotFoundException(
-        'Team competition mapping not found for the specified team, competition, and season',
-      );
-    }
-    return rows[0];
+    return rows[0] ?? null;
   }
 
   async findActiveCompetitionsForTeam(teamId: string) {
