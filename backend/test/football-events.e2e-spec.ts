@@ -105,7 +105,7 @@ describe('Football Events E2E', () => {
         awayTeamId,
       });
       expect(res.status).toBe(400);
-      expect(res.body.message).toContain('referenced venue does not exist');
+      expect(res.body.message).toContain('Invalid venue_id: referenced record does not exist');
     });
 
     it('should reject creation when competition_id does not exist', async () => {
@@ -117,7 +117,7 @@ describe('Football Events E2E', () => {
         awayTeamId,
       });
       expect(res.status).toBe(400);
-      expect(res.body.message).toContain('referenced competition does not exist');
+      expect(res.body.message).toContain('Invalid competition_id: referenced record does not exist');
     });
 
     it('should reject creation when home_team_id does not exist', async () => {
@@ -129,7 +129,7 @@ describe('Football Events E2E', () => {
         awayTeamId,
       });
       expect(res.status).toBe(400);
-      expect(res.body.message).toContain('referenced home team does not exist');
+      expect(res.body.message).toContain('Invalid home_team_id: referenced record does not exist');
     });
 
     it('should reject creation when away_team_id does not exist', async () => {
@@ -141,7 +141,7 @@ describe('Football Events E2E', () => {
         awayTeamId: '00000000-0000-0000-0000-000000000000',
       });
       expect(res.status).toBe(400);
-      expect(res.body.message).toContain('referenced away team does not exist');
+      expect(res.body.message).toContain('Invalid away_team_id: referenced record does not exist');
     });
 
     it('should reject creation when both homeTeamId and homeTeamName are set', async () => {
@@ -193,6 +193,9 @@ describe('Football Events E2E', () => {
     });
 
     it('should successfully create an event with valid resolved teams and return 201', async () => {
+      // FK validation tests above consume sequence values on failed inserts; reset before creates.
+      await getDb().execute(sql`ALTER SEQUENCE football_events_event_number_seq RESTART WITH 20000`);
+
       const startsAt = '2026-10-15T18:00:00.000Z';
       const res = await getAgent().post('/football-events').send({
         startsAt,
@@ -321,7 +324,7 @@ describe('Football Events E2E', () => {
         venueId: '00000000-0000-0000-0000-000000000000',
       });
       expect(res.status).toBe(400);
-      expect(res.body.message).toContain('referenced venue does not exist');
+      expect(res.body.message).toContain('Invalid venue_id: referenced record does not exist');
     });
 
     it('should reject update if competitionId does not exist', async () => {
@@ -329,7 +332,7 @@ describe('Football Events E2E', () => {
         competitionId: '00000000-0000-0000-0000-000000000000',
       });
       expect(res.status).toBe(400);
-      expect(res.body.message).toContain('referenced competition does not exist');
+      expect(res.body.message).toContain('Invalid competition_id: referenced record does not exist');
     });
 
     it('should reject update if homeTeamId does not exist', async () => {
@@ -338,7 +341,7 @@ describe('Football Events E2E', () => {
         homeTeamName: null, // clear name to maintain XOR
       });
       expect(res.status).toBe(400);
-      expect(res.body.message).toContain('referenced home team does not exist');
+      expect(res.body.message).toContain('Invalid home_team_id: referenced record does not exist');
     });
 
     it('should successfully update team reference using partial state merge', async () => {
