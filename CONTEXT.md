@@ -57,6 +57,17 @@ A scheduled football match between two teams (which may be specific resolved tea
 *   **External Mappings**: Synced using IDs from canonical fixture providers (API-Football) and linked to ticket supplier offerings via mappings.
 
 
+## Suppliers
+
+### Supplier
+A **Supplier** represents an external provider or secondary marketplace (e.g., Ticombo, SportsEvents365) that provides inventory (such as tickets or packages) to our platform.
+*   **Canonical table:** `suppliers`
+*   **Public identifier:** `slug` (never expose UUID in URLs)
+*   **Integration Key:** A Supplier is uniquely identified in code by an immutable `internal_code` (e.g., `TICOMBO_API`), which acts as the key for the backend factory pattern to route to their specific API integration logic.
+*   **Flexible Schema Pattern:** Fields like `type` ('tickets', 'hotels', etc.) and `origin` ('israeli', 'international') are explicitly stored as simple `text` columns in PostgreSQL to maintain schema flexibility.
+*   **Strict One-Way Data Flow:** The database schema (`suppliers.schema.ts`) is the absolute single source of truth. Union types (e.g., `SupplierType`) are defined directly alongside the schema and injected via Drizzle generics (`text('type').$type<SupplierType>()`). `suppliers.types.ts` must remain clean, exclusively using Drizzle's `$inferSelect` and `$inferInsert` to derive the domain types, ensuring types always flow downstream: Schema -> Types -> Services/Repositories.
+*   **Soft Deactivation:** Suppliers are never hard-deleted. They use `is_active` and `deactivated_at` fields to support soft-deactivation, preserving historical mapping and sync integrity while signaling to ingest workers to skip them.
+
 ## Geography Chain
 
 ```
