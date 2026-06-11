@@ -29,13 +29,6 @@ Enum team_competition_status {
   withdrawn
 }
 
-Enum supplier_type {
-  tickets
-  hotels
-  packages
-  transport
-  other
-}
 
 Enum supplier_origin {
   israeli
@@ -192,7 +185,7 @@ Table team_competitions {
 
 TableGroup events {
   football_events
-  concert_events [note: 'PLANNED — not yet implemented']
+  concert_events 
 }
 
 Table football_events {
@@ -309,24 +302,34 @@ TableGroup suppliers_and_mappings {
   concert_event_supplier_mappings
 }
 
+Table supplier_reviews {
+  id uuid [pk, default: `gen_random_uuid()`]
+  supplier_id uuid [not null, ref: > suppliers.id, note: 'CASCADE on delete']
+  user_id uuid [not null, note: 'הלקוח שכתב את הביקורת']
+  order_id uuid [note: 'קישור להזמנה כדי לוודא שזו ביקורת מאומתת']
+  rating integer [not null, note: 'ציון 1-5']
+  title text
+  comment text [note: 'תוכן הביקורת']
+  is_approved boolean [not null, default: false, note: 'סינון תוכן לפני פרסום']
+  created_at timestamp [not null, default: `now()`]
+}
+
 Table suppliers {
-  id uuid [pk, default: `gen_random_uuid()`, note: 'PLANNED']
-  name text [not null, unique, note: 'Hebrew']
-  name_en text
+  id uuid [pk, default: `gen_random_uuid()`]
+  name text [not null, unique, note: 'Hebrew name']
+  name_en text [not null, note: 'English name']
   slug text [not null, unique]
-  type supplier_type
-  origin supplier_origin
+  type text [not null, default: 'tickets', note: 'TS Type: tickets | hotels | packages | transport | other']
+  origin text [not null, default: 'international', note: 'TS Type: israeli | international']
   description text
   image_url text
   website_url text
   affiliate_link_base text
-  supplier_countries text[] [note: 'ISO codes']
-  supplier_competitions text[]
   api_football_id integer
-  internal_code text
+  internal_code text [not null, unique, note: 'Used in Backend Factory Pattern, e.g. TICOMBO_API']
   external_rating jsonb [note: '{ rating, url, provider }']
   contact_info jsonb
-  sync_config jsonb [note: 'schedule only']
+  sync_config jsonb [note: '{ enabled, interval_minutes, endpoints: {} }']
   is_active boolean [not null, default: true]
   deactivated_at timestamp
   last_successful_sync_at timestamp
