@@ -4,6 +4,7 @@ import {
   IsBoolean,
   IsInt,
   IsNotEmpty,
+  Min,
   IsOptional,
   IsString,
   IsUrl,
@@ -34,6 +35,7 @@ export class CreateCityDto {
   name_en?: string;
 
   @IsInt()
+  @Min(1)
   countryId!: number;
 
   @IsBoolean()

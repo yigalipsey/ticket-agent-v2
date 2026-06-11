@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
@@ -37,7 +37,9 @@ async function bootstrap(): Promise<void> {
 
   const port = process.env['PORT'] ?? 3000;
   await app.listen(port);
-  console.log(`Application is running on port ${port}`);
+  const logger = new Logger('Bootstrap');
+  logger.log(`Application is running on port ${port}`);
+  logger.log(`Swagger docs available at http://localhost:${port}/docs`);
 }
 
 bootstrap();

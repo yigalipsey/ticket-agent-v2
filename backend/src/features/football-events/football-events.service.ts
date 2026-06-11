@@ -3,16 +3,19 @@ import {
   ConflictException,
   Injectable,
   NotFoundException,
-} from '@nestjs/common';
-import { FootballEventsRepository, FindAllOptions } from './football-events.repository';
-import type { CreateFootballEventDto } from './dto/create-football-event.dto';
-import type { UpdateFootballEventDto } from './dto/update-football-event.dto';
-import type { NewFootballEvent, FootballEvent } from './football-events.types';
+} from "@nestjs/common";
+import {
+  FootballEventsRepository,
+  FindAllOptions,
+} from "./football-events.repository";
+import type { CreateFootballEventDto } from "./dto/create-football-event.dto";
+import type { UpdateFootballEventDto } from "./dto/update-football-event.dto";
+import type { NewFootballEvent, FootballEvent } from "./football-events.types";
 import {
   CheckConstraintViolationError,
   DuplicateFieldError,
   InvalidForeignKeyError,
-} from './football-events.errors';
+} from "./football-events.errors";
 
 /** Hard cap on slug collision suffix attempts to prevent infinite loops. */
 const MAX_SLUG_ATTEMPTS = 100;
@@ -25,26 +28,30 @@ export class FootballEventsService {
     return this.repository.findAll(options);
   }
 
-  async findById(id: string): Promise<FootballEvent> {
-    const event = await this.repository.findById(id);
-    if (!event) {
-      throw new NotFoundException(`Football event with ID "${id}" not found`);
-    }
-    return event;
-  }
-
   async findByEventNumber(eventNumber: number): Promise<FootballEvent> {
     const event = await this.repository.findByEventNumber(eventNumber);
     if (!event) {
-      throw new NotFoundException(`Football event with number ${eventNumber} not found`);
+      throw new NotFoundException(
+        `Football event with number ${eventNumber} not found`,
+      );
     }
     return event;
   }
 
   async create(dto: CreateFootballEventDto): Promise<FootballEvent> {
     // 1. Cheap sync validations BEFORE any I/O
-    this.validateTeamXor(dto.homeTeamId, dto.homeTeamName, 'homeTeamId', 'homeTeamName');
-    this.validateTeamXor(dto.awayTeamId, dto.awayTeamName, 'awayTeamId', 'awayTeamName');
+    this.validateTeamXor(
+      dto.homeTeamId,
+      dto.homeTeamName,
+      "homeTeamId",
+      "homeTeamName",
+    );
+    this.validateTeamXor(
+      dto.awayTeamId,
+      dto.awayTeamName,
+      "awayTeamId",
+      "awayTeamName",
+    );
 
     // 2. Resolve slug (only I/O needed before insert — team slug lookups + collision check)
     const slug = await this.resolveSlugForCreate(dto);
@@ -52,7 +59,7 @@ export class FootballEventsService {
     // 3. Build entity and persist — FK/unique violations are caught by handleDbError in repo
     const newEvent: NewFootballEvent = {
       starts_at: new Date(dto.startsAt),
-      status: dto.status ?? 'scheduled',
+      status: dto.status ?? "scheduled",
       competition_id: dto.competitionId,
       home_team_id: dto.homeTeamId,
       away_team_id: dto.awayTeamId,
@@ -70,7 +77,9 @@ export class FootballEventsService {
       min_price_amount: dto.minPriceAmount?.toString(),
       min_price_currency: dto.minPriceCurrency,
       min_price_sorting_ils: dto.minPriceSortingIls?.toString(),
-      min_price_updated_at: dto.minPriceUpdatedAt ? new Date(dto.minPriceUpdatedAt) : null,
+      min_price_updated_at: dto.minPriceUpdatedAt
+        ? new Date(dto.minPriceUpdatedAt)
+        : null,
     };
 
     try {
@@ -81,7 +90,10 @@ export class FootballEventsService {
     }
   }
 
-  async update(id: string, dto: UpdateFootballEventDto): Promise<FootballEvent> {
+  async update(
+    id: string,
+    dto: UpdateFootballEventDto,
+  ): Promise<FootballEvent> {
     const existing = await this.repository.findById(id);
     if (!existing) {
       throw new NotFoundException(`Football event with ID "${id}" not found`);
@@ -91,22 +103,25 @@ export class FootballEventsService {
     const merged = this.mergeEventState(existing, dto);
 
     // 2. Required-field checks on merged state — sync, no I/O
-    if (!merged.venue_id) throw new BadRequestException('venueId cannot be null or empty');
-    if (!merged.competition_id) throw new BadRequestException('competitionId cannot be null or empty');
-    if (!merged.starts_at) throw new BadRequestException('startsAt cannot be null or empty');
+    if (!merged.venue_id)
+      throw new BadRequestException("venueId cannot be null or empty");
+    if (!merged.competition_id)
+      throw new BadRequestException("competitionId cannot be null or empty");
+    if (!merged.starts_at)
+      throw new BadRequestException("startsAt cannot be null or empty");
 
     // 3. XOR validations on merged state — sync, no I/O
     this.validateTeamXor(
       merged.home_team_id ?? undefined,
       merged.home_team_name ?? undefined,
-      'homeTeamId',
-      'homeTeamName',
+      "homeTeamId",
+      "homeTeamName",
     );
     this.validateTeamXor(
       merged.away_team_id ?? undefined,
       merged.away_team_name ?? undefined,
-      'awayTeamId',
-      'awayTeamName',
+      "awayTeamId",
+      "awayTeamName",
     );
 
     // 4. Slug resolution (only if slug is actually changing)
@@ -144,17 +159,21 @@ export class FootballEventsService {
     const hasId = !!teamId;
     const hasName = !!teamName;
     if ((hasId && hasName) || (!hasId && !hasName)) {
-      throw new BadRequestException(`Exactly one of ${idField} or ${nameField} must be set.`);
+      throw new BadRequestException(
+        `Exactly one of ${idField} or ${nameField} must be set.`,
+      );
     }
   }
 
   /** Generates or validates a slug for a new event, then resolves any collisions. */
-  private async resolveSlugForCreate(dto: CreateFootballEventDto): Promise<string> {
+  private async resolveSlugForCreate(
+    dto: CreateFootballEventDto,
+  ): Promise<string> {
     let baseSlug = dto.slug;
 
     if (!baseSlug) {
-      let homePart = dto.homeTeamName ? this.slugify(dto.homeTeamName) : '';
-      let awayPart = dto.awayTeamName ? this.slugify(dto.awayTeamName) : '';
+      let homePart = dto.homeTeamName ? this.slugify(dto.homeTeamName) : "";
+      let awayPart = dto.awayTeamName ? this.slugify(dto.awayTeamName) : "";
 
       if (dto.homeTeamId && !homePart) {
         const teamSlug = await this.repository.findTeamSlugById(dto.homeTeamId);
@@ -166,8 +185,10 @@ export class FootballEventsService {
         if (teamSlug) awayPart = teamSlug;
       }
 
-      const datePart = dto.startsAt.split('T')[0];
-      baseSlug = `${homePart}-vs-${awayPart}-${datePart}`.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+      const datePart = dto.startsAt.split("T")[0];
+      baseSlug = `${homePart}-vs-${awayPart}-${datePart}`
+        .toLowerCase()
+        .replace(/[^a-z0-9-]/g, "-");
     }
 
     return this.resolveSlugCollision(baseSlug);
@@ -189,7 +210,10 @@ export class FootballEventsService {
    * Appends an incrementing suffix until a free slug is found.
    * Throws ConflictException after MAX_SLUG_ATTEMPTS to prevent infinite loops.
    */
-  private async resolveSlugCollision(baseSlug: string, excludeId?: string): Promise<string> {
+  private async resolveSlugCollision(
+    baseSlug: string,
+    excludeId?: string,
+  ): Promise<string> {
     let finalSlug = baseSlug;
     let suffix = 1;
 
@@ -209,7 +233,10 @@ export class FootballEventsService {
    * Merges existing DB state with the incoming DTO to produce the effective
    * final state for cross-field validation without touching the database.
    */
-  private mergeEventState(existing: FootballEvent, dto: UpdateFootballEventDto) {
+  private mergeEventState(
+    existing: FootballEvent,
+    dto: UpdateFootballEventDto,
+  ) {
     return {
       starts_at:
         dto.startsAt !== undefined
@@ -218,14 +245,22 @@ export class FootballEventsService {
             : null
           : existing.starts_at,
       competition_id:
-        dto.competitionId !== undefined ? dto.competitionId : existing.competition_id,
+        dto.competitionId !== undefined
+          ? dto.competitionId
+          : existing.competition_id,
       venue_id: dto.venueId !== undefined ? dto.venueId : existing.venue_id,
-      home_team_id: dto.homeTeamId !== undefined ? dto.homeTeamId : existing.home_team_id,
-      away_team_id: dto.awayTeamId !== undefined ? dto.awayTeamId : existing.away_team_id,
+      home_team_id:
+        dto.homeTeamId !== undefined ? dto.homeTeamId : existing.home_team_id,
+      away_team_id:
+        dto.awayTeamId !== undefined ? dto.awayTeamId : existing.away_team_id,
       home_team_name:
-        dto.homeTeamName !== undefined ? dto.homeTeamName : existing.home_team_name,
+        dto.homeTeamName !== undefined
+          ? dto.homeTeamName
+          : existing.home_team_name,
       away_team_name:
-        dto.awayTeamName !== undefined ? dto.awayTeamName : existing.away_team_name,
+        dto.awayTeamName !== undefined
+          ? dto.awayTeamName
+          : existing.away_team_name,
     };
   }
 
@@ -244,7 +279,8 @@ export class FootballEventsService {
 
     if (dto.startsAt !== undefined) patch.starts_at = new Date(dto.startsAt);
     if (dto.status !== undefined) patch.status = dto.status;
-    if (dto.competitionId !== undefined) patch.competition_id = dto.competitionId;
+    if (dto.competitionId !== undefined)
+      patch.competition_id = dto.competitionId;
     if (dto.homeTeamId !== undefined) patch.home_team_id = dto.homeTeamId;
     if (dto.awayTeamId !== undefined) patch.away_team_id = dto.awayTeamId;
     if (dto.venueId !== undefined) patch.venue_id = dto.venueId;
@@ -262,11 +298,14 @@ export class FootballEventsService {
       patch.football_data_external_id = dto.footballDataExternalId;
     if (dto.minPriceAmount !== undefined)
       patch.min_price_amount = dto.minPriceAmount?.toString() ?? null;
-    if (dto.minPriceCurrency !== undefined) patch.min_price_currency = dto.minPriceCurrency;
+    if (dto.minPriceCurrency !== undefined)
+      patch.min_price_currency = dto.minPriceCurrency;
     if (dto.minPriceSortingIls !== undefined)
       patch.min_price_sorting_ils = dto.minPriceSortingIls?.toString() ?? null;
     if (dto.minPriceUpdatedAt !== undefined)
-      patch.min_price_updated_at = dto.minPriceUpdatedAt ? new Date(dto.minPriceUpdatedAt) : null;
+      patch.min_price_updated_at = dto.minPriceUpdatedAt
+        ? new Date(dto.minPriceUpdatedAt)
+        : null;
 
     return patch;
   }
@@ -280,7 +319,10 @@ export class FootballEventsService {
     if (err instanceof DuplicateFieldError) {
       throw new ConflictException(err.message);
     }
-    if (err instanceof InvalidForeignKeyError || err instanceof CheckConstraintViolationError) {
+    if (
+      err instanceof InvalidForeignKeyError ||
+      err instanceof CheckConstraintViolationError
+    ) {
       throw new BadRequestException(err.message);
     }
   }
@@ -289,10 +331,10 @@ export class FootballEventsService {
     return text
       .toString()
       .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '') // remove accents
-      .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-      .replace(/\s+/g, '-') // collapse whitespace → hyphens
-      .replace(/-+/g, '-'); // collapse consecutive hyphens
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "") // remove accents
+      .replace(/[^a-z0-9 -]/g, "") // remove invalid chars
+      .replace(/\s+/g, "-") // collapse whitespace → hyphens
+      .replace(/-+/g, "-"); // collapse consecutive hyphens
   }
 }
