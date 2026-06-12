@@ -53,6 +53,7 @@ export class TeamsService {
       secondary_color: secondaryColorNormalized,
       api_football_id: dto.apiFootballId,
       is_popular: dto.isPopular,
+      is_national_team: dto.isNationalTeam,
       seo_content: dto.seoContent,
     };
 

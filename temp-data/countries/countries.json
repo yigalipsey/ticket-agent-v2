@@ -1,0 +1,32 @@
+[
+    {
+        "name": "אנגליה",
+        "name_en": "England",
+        "slug": "england"
+    },
+    {
+        "name": "ספרד",
+        "name_en": "Spain",
+        "slug": "spain"
+    },
+    {
+        "name": "איטליה",
+        "name_en": "Italy",
+        "slug": "italy"
+    },
+    {
+        "name": "גרמניה",
+        "name_en": "Germany",
+        "slug": "germany"
+    },
+    {
+        "name": "צרפת",
+        "name_en": "France",
+        "slug": "france"
+    },
+    {
+        "name": "אירופה",
+        "name_en": "Europe",
+        "slug": "europe"
+    }
+]

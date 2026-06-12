@@ -1,0 +1,65 @@
+[
+    {
+        "name": "פרמייר ליג",
+        "name_en": "Premier League",
+        "slug": "premier-league",
+        "country_slug": "england",
+        "type": "League",
+        "is_popular": true,
+        "api_competition_id": 39
+    },
+    {
+        "name": "לה ליגה",
+        "name_en": "La Liga",
+        "slug": "la-liga",
+        "country_slug": "spain",
+        "type": "League",
+        "is_popular": true,
+        "api_competition_id": 140
+    },
+    {
+        "name": "סרייה א'",
+        "name_en": "Serie A",
+        "slug": "serie-a",
+        "country_slug": "italy",
+        "type": "League",
+        "is_popular": true,
+        "api_competition_id": 135
+    },
+    {
+        "name": "בונדסליגה",
+        "name_en": "Bundesliga",
+        "slug": "bundesliga",
+        "country_slug": "germany",
+        "type": "League",
+        "is_popular": true,
+        "api_competition_id": 78
+    },
+    {
+        "name": "ליגה 1",
+        "name_en": "Ligue 1",
+        "slug": "ligue-1",
+        "country_slug": "france",
+        "type": "League",
+        "is_popular": true,
+        "api_competition_id": 61
+    },
+    {
+        "name": "ליגת האלופות",
+        "name_en": "UEFA Champions League",
+        "slug": "champions-league",
+        "country_slug": "europe",
+        "type": "Cup",
+        "is_popular": true,
+        "api_competition_id": 2
+    },
+    {
+        "name": "הליגה האירופית",
+        "name_en": "UEFA Europa League",
+        "slug": "europa-league",
+        "country_slug": "europe",
+        "type": "Cup",
+        "is_popular": true,
+        "api_competition_id": 3
+    }
+]

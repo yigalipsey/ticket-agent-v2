@@ -1,0 +1,254 @@
+{
+  "1229": {
+    "slug": "ac-milan",
+    "name": "מילאן",
+    "supplierTeamName": "ac-milan",
+    "apiFootballId": 489
+  },
+  "1230": {
+    "slug": "chelsea",
+    "name": "צ'לסי",
+    "supplierTeamName": "chelsea-fc",
+    "apiFootballId": 49
+  },
+  "1269": {
+    "slug": "as-roma",
+    "name": "רומא",
+    "supplierTeamName": "as-roma",
+    "apiFootballId": 497
+  },
+  "1300": {
+    "slug": "liverpool",
+    "name": "ליברפול",
+    "supplierTeamName": "liverpool-fc",
+    "apiFootballId": 40
+  },
+  "1304": {
+    "slug": "manchester-united",
+    "name": "מנצ'סטר יונייטד",
+    "supplierTeamName": "manchester-united-fc",
+    "apiFootballId": 33
+  },
+  "2563": {
+    "slug": "tottenham",
+    "name": "טוטנהאם",
+    "supplierTeamName": "tottenham-hotspur-fc",
+    "apiFootballId": 47
+  },
+  "2929": {
+    "slug": "arsenal",
+    "name": "ארסנל",
+    "supplierTeamName": "arsenal-fc",
+    "apiFootballId": 42
+  },
+  "2930": {
+    "slug": "everton",
+    "name": "אברטון",
+    "supplierTeamName": "everton-fc",
+    "apiFootballId": 45
+  },
+  "2933": {
+    "slug": "aston-villa",
+    "name": "אסטון וילה",
+    "supplierTeamName": "aston-villa-fc",
+    "apiFootballId": 66
+  },
+  "2934": {
+    "slug": "newcastle",
+    "name": "ניוקאסל",
+    "supplierTeamName": "newcastle-united-fc",
+    "apiFootballId": 34
+  },
+  "2935": {
+    "slug": "manchester-city",
+    "name": "מנצ'סטר סיטי",
+    "supplierTeamName": "manchester-city-fc",
+    "apiFootballId": 50
+  },
+  "2937": {
+    "slug": "fulham",
+    "name": "פולהאם",
+    "supplierTeamName": "fulham-fc",
+    "apiFootballId": 36
+  },
+  "2939": {
+    "slug": "crystal-palace",
+    "name": "קריסטל פאלאס",
+    "supplierTeamName": "crystal-palace-fc",
+    "apiFootballId": 52
+  },
+  "2962": {
+    "slug": "juventus",
+    "name": "יובנטוס",
+    "supplierTeamName": "juventus-fc",
+    "apiFootballId": 496
+  },
+  "2963": {
+    "slug": "udinese",
+    "name": "אודינזה",
+    "supplierTeamName": "udinese-calcio",
+    "apiFootballId": 494
+  },
+  "2968": {
+    "slug": "lazio",
+    "name": "לאציו",
+    "supplierTeamName": "ss-lazio",
+    "apiFootballId": 487
+  },
+  "2976": {
+    "slug": "bologna",
+    "name": "בולוניה",
+    "supplierTeamName": "bologna-fc",
+    "apiFootballId": 500
+  },
+  "2977": {
+    "slug": "parma",
+    "name": "פארמה",
+    "supplierTeamName": "parma-fc",
+    "apiFootballId": 523
+  },
+  "3002": {
+    "slug": "real-madrid",
+    "name": "ריאל מדריד",
+    "supplierTeamName": "real-madrid-cf",
+    "apiFootballId": 541
+  },
+  "7869": {
+    "slug": "barcelona",
+    "name": "ברצלונה",
+    "supplierTeamName": "fc-barcelona",
+    "apiFootballId": 529
+  },
+  "11176": {
+    "slug": "west-ham",
+    "name": "וסט האם",
+    "supplierTeamName": "west-ham-united-fc",
+    "apiFootballId": 48
+  },
+  "14078": {
+    "slug": "leeds",
+    "name": "לידס",
+    "supplierTeamName": "leeds-united-fc",
+    "apiFootballId": 63
+  },
+  "15365": {
+    "slug": "sunderland",
+    "name": "סנדרלנד",
+    "supplierTeamName": "sunderland-afc",
+    "apiFootballId": 746
+  },
+  "25196": {
+    "slug": "inter",
+    "name": "אינטר",
+    "supplierTeamName": "fc-inter-milan",
+    "apiFootballId": 505
+  },
+  "25304": {
+    "slug": "fiorentina",
+    "name": "פיורנטינה",
+    "supplierTeamName": "acf-fiorentina",
+    "apiFootballId": 502
+  },
+  "26979": {
+    "slug": "genoa",
+    "name": "גנואה",
+    "supplierTeamName": "genoa-cfc",
+    "apiFootballId": 495
+  },
+  "26981": {
+    "slug": "torino",
+    "name": "טורינו",
+    "supplierTeamName": "torino-fc",
+    "apiFootballId": 503
+  },
+  "26982": {
+    "slug": "cagliari",
+    "name": "קליארי",
+    "supplierTeamName": "cagliari-calcio",
+    "apiFootballId": 490
+  },
+  "27481": {
+    "slug": "ווסטהאם",
+    "name": "ווסטהאם",
+    "supplierTeamName": "empoli-fc",
+    "apiFootballId": 3446
+  },
+  "29131": {
+    "slug": "napoli",
+    "name": "נאפולי",
+    "supplierTeamName": "ssc-napoli",
+    "apiFootballId": 492
+  },
+  "29132": {
+    "slug": "atalanta",
+    "name": "אטאלנטה",
+    "supplierTeamName": "atalanta-bc",
+    "apiFootballId": 499
+  },
+  "36265": {
+    "slug": "burnley",
+    "name": "ברנלי",
+    "supplierTeamName": "burnley-fc",
+    "apiFootballId": 44
+  },
+  "59268": {
+    "slug": "verona",
+    "name": "ורונה",
+    "supplierTeamName": "hellas-verona-fc",
+    "apiFootballId": 504
+  },
+  "59269": {
+    "slug": "sassuolo",
+    "name": "ססואולו",
+    "supplierTeamName": "us-sassuolo-calcio",
+    "apiFootballId": 488
+  },
+  "71138": {
+    "slug": "bournemouth",
+    "name": "בורנמות'",
+    "supplierTeamName": "afc-bournemouth",
+    "apiFootballId": 35
+  },
+  "109446": {
+    "slug": "brighton",
+    "name": "ברייטון",
+    "supplierTeamName": "brighton-hove-albion-fc",
+    "apiFootballId": 51
+  },
+  "174185": {
+    "slug": "nottingham-forest",
+    "name": "נוטינגהאם פורסט",
+    "supplierTeamName": "nottingham-forest-fc",
+    "apiFootballId": 65
+  },
+  "187309": {
+    "slug": "brentford",
+    "name": "ברנטפורד",
+    "supplierTeamName": "brentford-fc",
+    "apiFootballId": 55
+  },
+  "197275": {
+    "slug": "lecce",
+    "name": "לצ'ה",
+    "supplierTeamName": "lecce",
+    "apiFootballId": 867
+  },
+  "197276": {
+    "slug": "cremonese",
+    "name": "קרמונזה",
+    "supplierTeamName": "us-cremonese",
+    "apiFootballId": 520
+  },
+  "235647": {
+    "slug": "como",
+    "name": "קומו",
+    "supplierTeamName": "como-1907",
+    "apiFootballId": 895
+  },
+  "259355": {
+    "slug": "pisa",
+    "name": "פיזה",
+    "supplierTeamName": "pisa-sc",
+    "apiFootballId": 801
+  }
+}

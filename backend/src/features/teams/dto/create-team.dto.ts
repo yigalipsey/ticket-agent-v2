@@ -76,6 +76,10 @@ export class CreateTeamDto {
   @IsOptional()
   isPopular?: boolean;
 
+  @IsBoolean()
+  @IsOptional()
+  isNationalTeam?: boolean;
+
   @ValidateNested()
   @Type(() => SEOContentDto)
   @IsOptional()

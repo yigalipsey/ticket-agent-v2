@@ -6,7 +6,8 @@
     "start:dev": "nest start --swc --watch",
     "build": "nest build --swc",
     "test": "vitest run",
-    "test:e2e": "vitest run --config vitest.config.e2e.ts"
+    "test:e2e": "vitest run --config vitest.config.e2e.ts",
+    "extract-teams": "ts-node src/scripts/extract-teams.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
@@ -20,6 +21,7 @@
     "drizzle-orm": "^0.41.0",
     "helmet": "^8.0.0",
     "joi": "^17.13.3",
+    "mongodb": "^7.3.0",
     "postgres": "^3.4.5",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2"

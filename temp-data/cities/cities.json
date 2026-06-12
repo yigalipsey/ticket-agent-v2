@@ -1,0 +1,128 @@
+[
+    {
+        "name": "לונדון",
+        "name_en": "London",
+        "slug": "london",
+        "country_slug": "england",
+        "is_popular": true
+    },
+    {
+        "name": "מנצ'סטר",
+        "name_en": "Manchester",
+        "slug": "manchester",
+        "country_slug": "england",
+        "is_popular": true
+    },
+    {
+        "name": "ליברפול",
+        "name_en": "Liverpool",
+        "slug": "liverpool",
+        "country_slug": "england",
+        "is_popular": true
+    },
+    {
+        "name": "ברמינגהאם",
+        "name_en": "Birmingham",
+        "slug": "birmingham",
+        "country_slug": "england",
+        "is_popular": false
+    },
+    {
+        "name": "ניוקאסל",
+        "name_en": "Newcastle",
+        "slug": "newcastle",
+        "country_slug": "england",
+        "is_popular": false
+    },
+    {
+        "name": "מדריד",
+        "name_en": "Madrid",
+        "slug": "madrid",
+        "country_slug": "spain",
+        "is_popular": true
+    },
+    {
+        "name": "ברצלונה",
+        "name_en": "Barcelona",
+        "slug": "barcelona",
+        "country_slug": "spain",
+        "is_popular": true
+    },
+    {
+        "name": "סביליה",
+        "name_en": "Seville",
+        "slug": "seville",
+        "country_slug": "spain",
+        "is_popular": false
+    },
+    {
+        "name": "ולנסיה",
+        "name_en": "Valencia",
+        "slug": "valencia",
+        "country_slug": "spain",
+        "is_popular": false
+    },
+    {
+        "name": "מילאנו",
+        "name_en": "Milano",
+        "slug": "milano",
+        "country_slug": "italy",
+        "is_popular": true
+    },
+    {
+        "name": "רומא",
+        "name_en": "Rome",
+        "slug": "rome",
+        "country_slug": "italy",
+        "is_popular": true
+    },
+    {
+        "name": "טורינו",
+        "name_en": "Turin",
+        "slug": "turin",
+        "country_slug": "italy",
+        "is_popular": false
+    },
+    {
+        "name": "ברגמו",
+        "name_en": "Bergamo",
+        "slug": "bergamo",
+        "country_slug": "italy",
+        "is_popular": false
+    },
+    {
+        "name": "מינכן",
+        "name_en": "Munich",
+        "slug": "munich",
+        "country_slug": "germany",
+        "is_popular": true
+    },
+    {
+        "name": "דורטמונד",
+        "name_en": "Dortmund",
+        "slug": "dortmund",
+        "country_slug": "germany",
+        "is_popular": false
+    },
+    {
+        "name": "פריז",
+        "name_en": "Paris",
+        "slug": "paris",
+        "country_slug": "france",
+        "is_popular": true
+    },
+    {
+        "name": "אמסטרדם",
+        "name_en": "Amsterdam",
+        "slug": "amsterdam",
+        "country_slug": "europe",
+        "is_popular": true
+    },
+    {
+        "name": "ליסבון",
+        "name_en": "Lisbon",
+        "slug": "lisbon",
+        "country_slug": "europe",
+        "is_popular": false
+    }
+]

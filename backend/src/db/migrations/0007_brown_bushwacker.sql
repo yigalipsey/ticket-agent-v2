@@ -1,0 +1,1 @@
+ALTER TABLE "teams" ADD COLUMN "is_national_team" boolean DEFAULT false;

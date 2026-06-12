@@ -1,0 +1,392 @@
+{
+  "1013": {
+    "slug": "barcelona",
+    "name": "ברצלונה",
+    "supplierTeamName": "ברצלונה",
+    "apiFootballId": 529
+  },
+  "1099": {
+    "slug": "aston-villa",
+    "name": "אסטון וילה",
+    "supplierTeamName": "אסטון וילה",
+    "apiFootballId": 66
+  },
+  "1102": {
+    "slug": "everton",
+    "name": "אברטון",
+    "supplierTeamName": "אברטון",
+    "apiFootballId": 45
+  },
+  "1103": {
+    "slug": "liverpool",
+    "name": "ליברפול",
+    "supplierTeamName": "ליברפול",
+    "apiFootballId": 40
+  },
+  "1104": {
+    "slug": "arsenal",
+    "name": "ארסנל",
+    "supplierTeamName": "ארסנל",
+    "apiFootballId": 42
+  },
+  "1106": {
+    "slug": "chelsea",
+    "name": "צ'לסי",
+    "supplierTeamName": "צ'לסי",
+    "apiFootballId": 49
+  },
+  "1107": {
+    "slug": "fulham",
+    "name": "פולהאם",
+    "supplierTeamName": "פולהאם",
+    "apiFootballId": 36
+  },
+  "1108": {
+    "slug": "tottenham",
+    "name": "טוטנהאם",
+    "supplierTeamName": "טוטנהאם",
+    "apiFootballId": 47
+  },
+  "1109": {
+    "slug": "west-ham",
+    "name": "וסט האם",
+    "supplierTeamName": "ווסטהאם",
+    "apiFootballId": 48
+  },
+  "1110": {
+    "slug": "manchester-city",
+    "name": "מנצ'סטר סיטי",
+    "supplierTeamName": "מנצ'סטר סיטי",
+    "apiFootballId": 50
+  },
+  "1111": {
+    "slug": "manchester-united",
+    "name": "מנצ'סטר יונייטד",
+    "supplierTeamName": "מנצ'סטר יונייטד",
+    "apiFootballId": 33
+  },
+  "1113": {
+    "slug": "newcastle",
+    "name": "ניוקאסל",
+    "supplierTeamName": "ניוקאסל",
+    "apiFootballId": 34
+  },
+  "1174": {
+    "slug": "borussia-dortmund",
+    "name": "בורוסיה דורטמונד",
+    "supplierTeamName": "בורוסיה דורטמונד",
+    "apiFootballId": 165
+  },
+  "1175": {
+    "slug": "eintracht-frankfurt",
+    "name": "איינטרכט פרנקפורט",
+    "supplierTeamName": "איינטרכט פרנקפורט",
+    "apiFootballId": 169
+  },
+  "1179": {
+    "slug": "bayer-leverkusen",
+    "name": "באייר לברקוזן",
+    "supplierTeamName": "לברקוזן",
+    "apiFootballId": 168
+  },
+  "1182": {
+    "slug": "bayern-munich",
+    "name": "באיירן מינכן",
+    "supplierTeamName": "באיירן מינכן",
+    "apiFootballId": 157
+  },
+  "1186": {
+    "slug": "paris-saint-germain",
+    "name": "פאריס סן ז'רמן",
+    "supplierTeamName": "פ.ס.ז'",
+    "apiFootballId": 85
+  },
+  "1193": {
+    "slug": "marseille",
+    "name": "מרסיי",
+    "supplierTeamName": "מארסיי",
+    "apiFootballId": 81
+  },
+  "1207": {
+    "slug": "psv-eindhoven",
+    "name": "PSV Eindhoven",
+    "supplierTeamName": "פ.ס.וו. איינדהובן",
+    "apiFootballId": 197
+  },
+  "1210": {
+    "slug": "ajax",
+    "name": "אייאקס",
+    "supplierTeamName": "אייאקס",
+    "apiFootballId": 194
+  },
+  "1277": {
+    "slug": "slavia-praha",
+    "name": "Slavia Praha",
+    "supplierTeamName": "סלאביה פראג",
+    "apiFootballId": 560
+  },
+  "1295": {
+    "slug": "club-brugge-kv",
+    "name": "קלאב ברוז'",
+    "supplierTeamName": "קלאב ברוז'",
+    "apiFootballId": 569
+  },
+  "1380": {
+    "slug": "espanyol",
+    "name": "אספניול",
+    "supplierTeamName": "אספניול",
+    "apiFootballId": 540
+  },
+  "1381": {
+    "slug": "athletic-club",
+    "name": "אתלטיק בילבאו",
+    "supplierTeamName": "אתלטיק בילבאו",
+    "apiFootballId": 531
+  },
+  "1382": {
+    "slug": "getafe",
+    "name": "חתאפה",
+    "supplierTeamName": "חטאפה",
+    "apiFootballId": 546
+  },
+  "1384": {
+    "slug": "atletico-madrid",
+    "name": "אתלטיקו מדריד",
+    "supplierTeamName": "אתלטיקו מדריד",
+    "apiFootballId": 530
+  },
+  "1385": {
+    "slug": "real-madrid",
+    "name": "ריאל מדריד",
+    "supplierTeamName": "ריאל מדריד",
+    "apiFootballId": 541
+  },
+  "1386": {
+    "slug": "mallorca",
+    "name": "מיורקה",
+    "supplierTeamName": "מאיורקה",
+    "apiFootballId": 798
+  },
+  "1387": {
+    "slug": "osasuna",
+    "name": "אוססונה",
+    "supplierTeamName": "אוסאסונה",
+    "apiFootballId": 727
+  },
+  "1388": {
+    "slug": "real-sociedad",
+    "name": "ריאל סוסיאדד",
+    "supplierTeamName": "ריאל סוסיאדד",
+    "apiFootballId": 548
+  },
+  "1390": {
+    "slug": "real-betis",
+    "name": "ריאל בטיס",
+    "supplierTeamName": "בטיס",
+    "apiFootballId": 543
+  },
+  "1391": {
+    "slug": "sevilla",
+    "name": "סביליה",
+    "supplierTeamName": "סביליה",
+    "apiFootballId": 536
+  },
+  "1392": {
+    "slug": "valencia",
+    "name": "ולנסיה",
+    "supplierTeamName": "ולנסיה",
+    "apiFootballId": 532
+  },
+  "1393": {
+    "slug": "celta-vigo",
+    "name": "סלטה ויגו",
+    "supplierTeamName": "סלטה ויגו",
+    "apiFootballId": 538
+  },
+  "1394": {
+    "slug": "villarreal",
+    "name": "ויאריאל",
+    "supplierTeamName": "ויאריאל",
+    "apiFootballId": 533
+  },
+  "1397": {
+    "slug": "levante",
+    "name": "לבנטה",
+    "supplierTeamName": "לבאנטה",
+    "apiFootballId": 539
+  },
+  "1467": {
+    "slug": "galatasaray",
+    "name": "גלאטסראיי",
+    "supplierTeamName": "גלאטסראיי",
+    "apiFootballId": 645
+  },
+  "1490": {
+    "slug": "olympiakos-piraeus",
+    "name": "Olympiakos Piraeus",
+    "supplierTeamName": "אולימפיאקוס",
+    "apiFootballId": 553
+  },
+  "1758": {
+    "slug": "sporting-cp",
+    "name": "Sporting CP",
+    "supplierTeamName": "ספורטינג ליסבון",
+    "apiFootballId": 228
+  },
+  "1760": {
+    "slug": "inter",
+    "name": "אינטר",
+    "supplierTeamName": "אינטר",
+    "apiFootballId": 505
+  },
+  "1762": {
+    "slug": "fc-copenhagen",
+    "name": "FC Copenhagen",
+    "supplierTeamName": "קופנהאגן",
+    "apiFootballId": 400
+  },
+  "1763": {
+    "slug": "benfica",
+    "name": "בנפיקה",
+    "supplierTeamName": "בנפיקה ליסבון",
+    "apiFootballId": 211
+  },
+  "1874": {
+    "slug": "atalanta",
+    "name": "אטאלנטה",
+    "supplierTeamName": "אטאלנטה",
+    "apiFootballId": 499
+  },
+  "2250": {
+    "slug": "burnley",
+    "name": "ברנלי",
+    "supplierTeamName": "ברנלי",
+    "apiFootballId": 44
+  },
+  "2255": {
+    "slug": "wolves",
+    "name": "וולברהמפטון",
+    "supplierTeamName": "וולבס",
+    "apiFootballId": 39
+  },
+  "2256": {
+    "slug": "crystal-palace",
+    "name": "קריסטל פאלאס",
+    "supplierTeamName": "קריסטל פאלאס",
+    "apiFootballId": 52
+  },
+  "2270": {
+    "slug": "leeds",
+    "name": "לידס",
+    "supplierTeamName": "לידס יונייטד",
+    "apiFootballId": 63
+  },
+  "2271": {
+    "slug": "sunderland",
+    "name": "סנדרלנד",
+    "supplierTeamName": "סנדרלנד",
+    "apiFootballId": 746
+  },
+  "2280": {
+    "slug": "brighton",
+    "name": "ברייטון",
+    "supplierTeamName": "ברייטון אנד הוב אלביון",
+    "apiFootballId": 51
+  },
+  "2340": {
+    "slug": "rayo-vallecano",
+    "name": "ראיו ואיקאנו",
+    "supplierTeamName": "ראיו ואיקאנו",
+    "apiFootballId": 728
+  },
+  "2341": {
+    "slug": "alaves",
+    "name": "אלאבס",
+    "supplierTeamName": "אלאבס",
+    "apiFootballId": 542
+  },
+  "2370": {
+    "slug": "nottingham-forest",
+    "name": "נוטינגהאם פורסט",
+    "supplierTeamName": "נוטינגהאם פורסט",
+    "apiFootballId": 65
+  },
+  "2442": {
+    "slug": "juventus",
+    "name": "יובנטוס",
+    "supplierTeamName": "יובנטוס",
+    "apiFootballId": 496
+  },
+  "2448": {
+    "slug": "napoli",
+    "name": "נאפולי",
+    "supplierTeamName": "נאפולי",
+    "apiFootballId": 492
+  },
+  "2697": {
+    "slug": "elche",
+    "name": "אלצ'ה",
+    "supplierTeamName": "אלצ'ה",
+    "apiFootballId": 797
+  },
+  "3158": {
+    "slug": "qarabag",
+    "name": "קרבאג",
+    "supplierTeamName": "קראבאג",
+    "apiFootballId": 556
+  },
+  "3884": {
+    "slug": "girona",
+    "name": "חירונה",
+    "supplierTeamName": "ג'ירונה",
+    "apiFootballId": 547
+  },
+  "5543": {
+    "slug": "brentford",
+    "name": "ברנטפורד",
+    "supplierTeamName": "ברנטפורד",
+    "apiFootballId": 55
+  },
+  "5654": {
+    "slug": "bournemouth",
+    "name": "בורנמות'",
+    "supplierTeamName": "בורנמות'",
+    "apiFootballId": 35
+  },
+  "5988": {
+    "slug": "oviedo",
+    "name": "אוביידו",
+    "supplierTeamName": "ריאל אוביידו",
+    "apiFootballId": 718
+  },
+  "6111": {
+    "slug": "kairat-almaty",
+    "name": "קייראט אלמטי",
+    "supplierTeamName": "קאיירט",
+    "apiFootballId": 664
+  },
+  "6660": {
+    "slug": "monaco",
+    "name": "מונאקו",
+    "supplierTeamName": "מונקו",
+    "apiFootballId": 91
+  },
+  "7176": {
+    "slug": "union-st-gilloise",
+    "name": "אוניון סן גילואז",
+    "supplierTeamName": "סנט גילוואה",
+    "apiFootballId": 1393
+  },
+  "7184": {
+    "slug": "bodoglimt",
+    "name": "Bodo/Glimt",
+    "supplierTeamName": "בודו/גלימט",
+    "apiFootballId": 327
+  },
+  "7860": {
+    "slug": "pafos",
+    "name": "פאפוס",
+    "supplierTeamName": "פאפוס",
+    "apiFootballId": 3403
+  }
+}

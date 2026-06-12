@@ -1,0 +1,908 @@
+{
+  "1": {
+    "slug": "spain",
+    "name": "ספרד",
+    "supplierTeamName": "Spain World Cup 2026",
+    "apiFootballId": 9
+  },
+  "2": {
+    "slug": "france",
+    "name": "צרפת",
+    "supplierTeamName": "France World Cup 2026",
+    "apiFootballId": 2
+  },
+  "3": {
+    "slug": "germany",
+    "name": "גרמניה",
+    "supplierTeamName": "Germany World Cup 2026",
+    "apiFootballId": 25
+  },
+  "4": {
+    "slug": "scotland",
+    "name": "סקוטלנד",
+    "supplierTeamName": "Scotland World Cup 2026",
+    "apiFootballId": 1108
+  },
+  "6": {
+    "slug": "switzerland",
+    "name": "שווייץ",
+    "supplierTeamName": "Switzerland World Cup 2026",
+    "apiFootballId": 15
+  },
+  "7": {
+    "slug": "croatia",
+    "name": "קרואטיה",
+    "supplierTeamName": "Croatia World Cup 2026",
+    "apiFootballId": 3
+  },
+  "13": {
+    "slug": "england",
+    "name": "אנגליה",
+    "supplierTeamName": "England World Cup 2026",
+    "apiFootballId": 10
+  },
+  "15": {
+    "slug": "netherlands",
+    "name": "הולנד",
+    "supplierTeamName": "Netherlands World Cup 2026",
+    "apiFootballId": 1118
+  },
+  "16": {
+    "slug": "austria",
+    "name": "אוסטריה",
+    "supplierTeamName": "Austria World Cup 2026",
+    "apiFootballId": 3442
+  },
+  "17": {
+    "slug": "belgium",
+    "name": "בלגיה",
+    "supplierTeamName": "Belgium World Cup 2026",
+    "apiFootballId": 1
+  },
+  "23": {
+    "slug": "portugal",
+    "name": "פורטוגל",
+    "supplierTeamName": "Portugal World Cup 2026",
+    "apiFootballId": 27
+  },
+  "46": {
+    "slug": "ac-milan",
+    "name": "מילאן",
+    "supplierTeamName": "AC Milan",
+    "apiFootballId": 489
+  },
+  "50": {
+    "slug": "fiorentina",
+    "name": "פיורנטינה",
+    "supplierTeamName": "ACF Fiorentina",
+    "apiFootballId": 502
+  },
+  "53": {
+    "slug": "bournemouth",
+    "name": "בורנמות'",
+    "supplierTeamName": "AFC Bournemouth",
+    "apiFootballId": 35
+  },
+  "72": {
+    "slug": "argentina",
+    "name": "ארגנטינה",
+    "supplierTeamName": "Argentina World Cup 2026",
+    "apiFootballId": 26
+  },
+  "79": {
+    "slug": "as-roma",
+    "name": "רומא",
+    "supplierTeamName": "AS Roma",
+    "apiFootballId": 497
+  },
+  "81": {
+    "slug": "aston-villa",
+    "name": "אסטון וילה",
+    "supplierTeamName": "Aston Villa FC",
+    "apiFootballId": 66
+  },
+  "82": {
+    "slug": "atalanta",
+    "name": "אטאלנטה",
+    "supplierTeamName": "Atalanta BC",
+    "apiFootballId": 499
+  },
+  "83": {
+    "slug": "athletic-club",
+    "name": "אתלטיק בילבאו",
+    "supplierTeamName": "Athletic Club",
+    "apiFootballId": 531
+  },
+  "89": {
+    "slug": "atletico-madrid",
+    "name": "אתלטיקו מדריד",
+    "supplierTeamName": "Atletico de Madrid",
+    "apiFootballId": 530
+  },
+  "105": {
+    "slug": "bayer-leverkusen",
+    "name": "באייר לברקוזן",
+    "supplierTeamName": "Bayer 04 Leverkusen",
+    "apiFootballId": 168
+  },
+  "121": {
+    "slug": "bologna",
+    "name": "בולוניה",
+    "supplierTeamName": "Bologna FC",
+    "apiFootballId": 500
+  },
+  "123": {
+    "slug": "borussia-dortmund",
+    "name": "בורוסיה דורטמונד",
+    "supplierTeamName": "Borussia Dortmund",
+    "apiFootballId": 165
+  },
+  "124": {
+    "slug": "borussia-mnchengladbach",
+    "name": "בורוסיה מנשנגלדבך",
+    "supplierTeamName": "Borussia Mönchengladbach",
+    "apiFootballId": 163
+  },
+  "128": {
+    "slug": "brazil",
+    "name": "ברזיל",
+    "supplierTeamName": "Brazil World Cup 2026",
+    "apiFootballId": 6
+  },
+  "129": {
+    "slug": "brentford",
+    "name": "ברנטפורד",
+    "supplierTeamName": "Brentford FC",
+    "apiFootballId": 55
+  },
+  "130": {
+    "slug": "brighton",
+    "name": "ברייטון",
+    "supplierTeamName": "Brighton Hove Albion FC",
+    "apiFootballId": 51
+  },
+  "140": {
+    "slug": "osasuna",
+    "name": "אוססונה",
+    "supplierTeamName": "CA Osasuna",
+    "apiFootballId": 727
+  },
+  "145": {
+    "slug": "canada",
+    "name": "קנדה",
+    "supplierTeamName": "Canada World Cup 2026",
+    "apiFootballId": 5529
+  },
+  "195": {
+    "slug": "colombia",
+    "name": "קולומביה",
+    "supplierTeamName": "Colombia World Cup 2026",
+    "apiFootballId": 8
+  },
+  "208": {
+    "slug": "crystal-palace",
+    "name": "קריסטל פאלאס",
+    "supplierTeamName": "Crystal Palace FC",
+    "apiFootballId": 52
+  },
+  "227": {
+    "slug": "alaves",
+    "name": "אלאבס",
+    "supplierTeamName": "Deportivo Alaves",
+    "apiFootballId": 542
+  },
+  "247": {
+    "slug": "ecuador",
+    "name": "אקוודור",
+    "supplierTeamName": "Ecuador World Cup 2026",
+    "apiFootballId": 2382
+  },
+  "251": {
+    "slug": "eintracht-frankfurt",
+    "name": "איינטרכט פרנקפורט",
+    "supplierTeamName": "Eintracht Frankfurt",
+    "apiFootballId": 169
+  },
+  "268": {
+    "slug": "everton",
+    "name": "אברטון",
+    "supplierTeamName": "Everton FC",
+    "apiFootballId": 45
+  },
+  "271": {
+    "slug": "fc-augsburg",
+    "name": "אאוגסבורג",
+    "supplierTeamName": "FC Augsburg",
+    "apiFootballId": 170
+  },
+  "272": {
+    "slug": "barcelona",
+    "name": "ברצלונה",
+    "supplierTeamName": "FC Barcelona",
+    "apiFootballId": 529
+  },
+  "273": {
+    "slug": "bayern-munich",
+    "name": "באיירן מינכן",
+    "supplierTeamName": "FC Bayern Munich",
+    "apiFootballId": 157
+  },
+  "276": {
+    "slug": "1-fc-heidenheim",
+    "name": "היידנהיים",
+    "supplierTeamName": "FC Heidenheim",
+    "apiFootballId": 180
+  },
+  "277": {
+    "slug": "inter",
+    "name": "אינטר",
+    "supplierTeamName": "FC Inter Milan",
+    "apiFootballId": 505
+  },
+  "278": {
+    "slug": "1fc-kln",
+    "name": "קלן",
+    "supplierTeamName": "FC Köln",
+    "apiFootballId": 192
+  },
+  "280": {
+    "slug": "union-berlin",
+    "name": "אוניון ברלין",
+    "supplierTeamName": "FC Union Berlin",
+    "apiFootballId": 182
+  },
+  "294": {
+    "slug": "fsv-mainz-05",
+    "name": "מיינץ 05",
+    "supplierTeamName": "FSV Mainz 05",
+    "apiFootballId": 164
+  },
+  "295": {
+    "slug": "fulham",
+    "name": "פולהאם",
+    "supplierTeamName": "Fulham FC",
+    "apiFootballId": 36
+  },
+  "297": {
+    "slug": "genoa",
+    "name": "גנואה",
+    "supplierTeamName": "Genoa CFC",
+    "apiFootballId": 495
+  },
+  "300": {
+    "slug": "getafe",
+    "name": "חתאפה",
+    "supplierTeamName": "Getafe CF",
+    "apiFootballId": 546
+  },
+  "302": {
+    "slug": "girona",
+    "name": "חירונה",
+    "supplierTeamName": "Girona FC",
+    "apiFootballId": 547
+  },
+  "330": {
+    "slug": "verona",
+    "name": "ורונה",
+    "supplierTeamName": "Hellas Verona FC",
+    "apiFootballId": 504
+  },
+  "381": {
+    "slug": "juventus",
+    "name": "יובנטוס",
+    "supplierTeamName": "Juventus FC",
+    "apiFootballId": 496
+  },
+  "417": {
+    "slug": "lille",
+    "name": "ליל",
+    "supplierTeamName": "Lille LOSC",
+    "apiFootballId": 79
+  },
+  "422": {
+    "slug": "liverpool",
+    "name": "ליברפול",
+    "supplierTeamName": "Liverpool FC",
+    "apiFootballId": 40
+  },
+  "444": {
+    "slug": "manchester-city",
+    "name": "מנצ'סטר סיטי",
+    "supplierTeamName": "Manchester City FC",
+    "apiFootballId": 50
+  },
+  "445": {
+    "slug": "manchester-united",
+    "name": "מנצ'סטר יונייטד",
+    "supplierTeamName": "Manchester United FC",
+    "apiFootballId": 33
+  },
+  "465": {
+    "slug": "mexico",
+    "name": "מקסיקו",
+    "supplierTeamName": "Mexico World Cup 2026",
+    "apiFootballId": 16
+  },
+  "520": {
+    "slug": "newcastle",
+    "name": "ניוקאסל",
+    "supplierTeamName": "Newcastle United FC",
+    "apiFootballId": 34
+  },
+  "528": {
+    "slug": "nottingham-forest",
+    "name": "נוטינגהאם פורסט",
+    "supplierTeamName": "Nottingham Forest FC",
+    "apiFootballId": 65
+  },
+  "532": {
+    "slug": "nice",
+    "name": "ניס",
+    "supplierTeamName": "OGC Nice",
+    "apiFootballId": 84
+  },
+  "537": {
+    "slug": "marseille",
+    "name": "מרסיי",
+    "supplierTeamName": "Olympique de Marseille",
+    "apiFootballId": 81
+  },
+  "538": {
+    "slug": "lyon",
+    "name": "ליון",
+    "supplierTeamName": "Olympique Lyonnais",
+    "apiFootballId": 80
+  },
+  "551": {
+    "slug": "panama",
+    "name": "פנמה",
+    "supplierTeamName": "Panama World Cup 2026",
+    "apiFootballId": 11
+  },
+  "554": {
+    "slug": "paraguay",
+    "name": "פרגוואי",
+    "supplierTeamName": "",
+    "apiFootballId": 3427
+  },
+  "584": {
+    "slug": "paris-saint-germain",
+    "name": "פאריס סן ז'רמן",
+    "supplierTeamName": "Paris Saint-Germain FC",
+    "apiFootballId": 85
+  },
+  "592": {
+    "slug": "rayo-vallecano",
+    "name": "ראיו ואיקאנו",
+    "supplierTeamName": "Rayo Vallecano",
+    "apiFootballId": 728
+  },
+  "593": {
+    "slug": "rb-leipzig",
+    "name": "RB לייפציג",
+    "supplierTeamName": "RB Leipzig",
+    "apiFootballId": 173
+  },
+  "594": {
+    "slug": "celta-vigo",
+    "name": "סלטה ויגו",
+    "supplierTeamName": "RC Celta de Vigo",
+    "apiFootballId": 538
+  },
+  "595": {
+    "slug": "lens",
+    "name": "לאנס",
+    "supplierTeamName": "RC Lens",
+    "apiFootballId": 116
+  },
+  "596": {
+    "slug": "mallorca",
+    "name": "מיורקה",
+    "supplierTeamName": "RCD Mallorca",
+    "apiFootballId": 798
+  },
+  "597": {
+    "slug": "real-betis",
+    "name": "ריאל בטיס",
+    "supplierTeamName": "Real Betis Balompie",
+    "apiFootballId": 543
+  },
+  "598": {
+    "slug": "real-madrid",
+    "name": "ריאל מדריד",
+    "supplierTeamName": "Real Madrid CF",
+    "apiFootballId": 541
+  },
+  "600": {
+    "slug": "real-sociedad",
+    "name": "ריאל סוסיאדד",
+    "supplierTeamName": "Real Sociedad",
+    "apiFootballId": 548
+  },
+  "630": {
+    "slug": "sc-freiburg",
+    "name": "פרייבורג",
+    "supplierTeamName": "SC Freiburg",
+    "apiFootballId": 160
+  },
+  "643": {
+    "slug": "sevilla",
+    "name": "סביליה",
+    "supplierTeamName": "Sevilla FC",
+    "apiFootballId": 536
+  },
+  "659": {
+    "slug": "lazio",
+    "name": "לאציו",
+    "supplierTeamName": "SS Lazio",
+    "apiFootballId": 487
+  },
+  "660": {
+    "slug": "napoli",
+    "name": "נאפולי",
+    "supplierTeamName": "SSC Napoli",
+    "apiFootballId": 492
+  },
+  "665": {
+    "slug": "stade-brestois-29",
+    "name": "ברסט",
+    "supplierTeamName": "Stade Brestois 29",
+    "apiFootballId": 106
+  },
+  "667": {
+    "slug": "rennes",
+    "name": "רן",
+    "supplierTeamName": "Stade de Rennes FC",
+    "apiFootballId": 94
+  },
+  "676": {
+    "slug": "werder-bremen",
+    "name": "ורדר ברמן",
+    "supplierTeamName": "SV Werder Bremen",
+    "apiFootballId": 162
+  },
+  "750": {
+    "slug": "torino",
+    "name": "טורינו",
+    "supplierTeamName": "Torino FC",
+    "apiFootballId": 503
+  },
+  "756": {
+    "slug": "tottenham",
+    "name": "טוטנהאם",
+    "supplierTeamName": "Tottenham Hotspur FC",
+    "apiFootballId": 47
+  },
+  "757": {
+    "slug": "toulouse",
+    "name": "טולוז",
+    "supplierTeamName": "Toulouse FC",
+    "apiFootballId": 96
+  },
+  "763": {
+    "slug": "1899-hoffenheim",
+    "name": "הופנהיים 1899",
+    "supplierTeamName": "TSG 1899 Hoffenheim",
+    "apiFootballId": 167
+  },
+  "772": {
+    "slug": "uruguay",
+    "name": "אורוגוואי",
+    "supplierTeamName": "Uruguay World Cup 2026",
+    "apiFootballId": 7
+  },
+  "780": {
+    "slug": "valencia",
+    "name": "ולנסיה",
+    "supplierTeamName": "Valencia CF",
+    "apiFootballId": 532
+  },
+  "786": {
+    "slug": "vfb-stuttgart",
+    "name": "שטוטגרט",
+    "supplierTeamName": "VfB Stuttgart",
+    "apiFootballId": 172
+  },
+  "788": {
+    "slug": "vfl-wolfsburg",
+    "name": "וולפסבורג",
+    "supplierTeamName": "VfL Wolfsburg",
+    "apiFootballId": 161
+  },
+  "789": {
+    "slug": "villarreal",
+    "name": "ויאריאל",
+    "supplierTeamName": "Villarreal CF",
+    "apiFootballId": 533
+  },
+  "802": {
+    "slug": "west-ham",
+    "name": "וסט האם",
+    "supplierTeamName": "West Ham United FC",
+    "apiFootballId": 48
+  },
+  "813": {
+    "slug": "wolves",
+    "name": "וולברהמפטון",
+    "supplierTeamName": "Wolverhampton Wanderers FC",
+    "apiFootballId": 39
+  },
+  "1827": {
+    "slug": "norway",
+    "name": "נורווגיה",
+    "supplierTeamName": "Norway World Cup 2026",
+    "apiFootballId": 1090
+  },
+  "1835": {
+    "slug": "arsenal",
+    "name": "ארסנל",
+    "supplierTeamName": "Arsenal FC",
+    "apiFootballId": 42
+  },
+  "1836": {
+    "slug": "chelsea",
+    "name": "צ'לסי",
+    "supplierTeamName": "Chelsea FC",
+    "apiFootballId": 49
+  },
+  "1837": {
+    "slug": "ajax",
+    "name": "אייאקס",
+    "supplierTeamName": "AFC Ajax",
+    "apiFootballId": 194
+  },
+  "1839": {
+    "slug": "como",
+    "name": "קומו",
+    "supplierTeamName": "Como",
+    "apiFootballId": 895
+  },
+  "1841": {
+    "slug": "le-havre",
+    "name": "לה הבר",
+    "supplierTeamName": "Le Havre",
+    "apiFootballId": 111
+  },
+  "1843": {
+    "slug": "lecce",
+    "name": "לצ'ה",
+    "supplierTeamName": "US Lecce",
+    "apiFootballId": 867
+  },
+  "1860": {
+    "slug": "union-st-gilloise",
+    "name": "אוניון סן גילואז",
+    "supplierTeamName": "Union Saint-Gilloise",
+    "apiFootballId": 1393
+  },
+  "1861": {
+    "slug": "espanyol",
+    "name": "אספניול",
+    "supplierTeamName": "RCD Espanyol",
+    "apiFootballId": 540
+  },
+  "1863": {
+    "slug": "fc-st-pauli",
+    "name": "סנט פאולי",
+    "supplierTeamName": "FC St. Pauli",
+    "apiFootballId": 186
+  },
+  "1865": {
+    "slug": "udinese",
+    "name": "אודינזה",
+    "supplierTeamName": "Udinese",
+    "apiFootballId": 494
+  },
+  "1867": {
+    "slug": "parma",
+    "name": "פארמה",
+    "supplierTeamName": "Parma FC",
+    "apiFootballId": 523
+  },
+  "11969": {
+    "slug": "benfica",
+    "name": "בנפיקה",
+    "supplierTeamName": "Benfica",
+    "apiFootballId": 211
+  },
+  "12078": {
+    "slug": "bodoglimt",
+    "name": "Bodo/Glimt",
+    "supplierTeamName": "FK Bodø/Glimt",
+    "apiFootballId": 327
+  },
+  "12177": {
+    "slug": "club-brugge-kv",
+    "name": "קלאב ברוז'",
+    "supplierTeamName": "Club Brugge KV",
+    "apiFootballId": 569
+  },
+  "12244": {
+    "slug": "monaco",
+    "name": "מונאקו",
+    "supplierTeamName": "AS Monaco FC",
+    "apiFootballId": 91
+  },
+  "12472": {
+    "slug": "auxerre",
+    "name": "אוסר",
+    "supplierTeamName": "AJ Auxerre",
+    "apiFootballId": 108
+  },
+  "12959": {
+    "slug": "angers",
+    "name": "אנז'ה",
+    "supplierTeamName": "Angers SCO",
+    "apiFootballId": 77
+  },
+  "13149": {
+    "slug": "sporting-cp",
+    "name": "Sporting CP",
+    "supplierTeamName": "Sporting CP",
+    "apiFootballId": 228
+  },
+  "13247": {
+    "slug": "cagliari",
+    "name": "קליארי",
+    "supplierTeamName": "Cagliari Calcio",
+    "apiFootballId": 490
+  },
+  "14052": {
+    "slug": "united-states",
+    "name": "ארצות הברית",
+    "supplierTeamName": "",
+    "apiFootballId": 2384
+  },
+  "16050": {
+    "slug": "olympiakos-piraeus",
+    "name": "Olympiakos Piraeus",
+    "supplierTeamName": "Olympiacos FC",
+    "apiFootballId": 553
+  },
+  "17020": {
+    "slug": "burnley",
+    "name": "ברנלי",
+    "supplierTeamName": "Burnley FC",
+    "apiFootballId": 44
+  },
+  "17993": {
+    "slug": "galatasaray",
+    "name": "גלאטסראיי",
+    "supplierTeamName": "Galatasaray SK",
+    "apiFootballId": 645
+  },
+  "18756": {
+    "slug": "psv-eindhoven",
+    "name": "PSV Eindhoven",
+    "supplierTeamName": "PSV Eindhoven",
+    "apiFootballId": 197
+  },
+  "19551": {
+    "slug": "nantes",
+    "name": "נאנט",
+    "supplierTeamName": "FC Nantes",
+    "apiFootballId": 83
+  },
+  "20682": {
+    "slug": "leeds",
+    "name": "לידס",
+    "supplierTeamName": "Leeds United FC",
+    "apiFootballId": 63
+  },
+  "28531": {
+    "slug": "pafos",
+    "name": "פאפוס",
+    "supplierTeamName": "Pafos FC",
+    "apiFootballId": 3403
+  },
+  "28533": {
+    "slug": "fc-copenhagen",
+    "name": "FC Copenhagen",
+    "supplierTeamName": "FC Copenhagen",
+    "apiFootballId": 400
+  },
+  "28670": {
+    "slug": "pisa",
+    "name": "פיזה",
+    "supplierTeamName": "Pisa SC",
+    "apiFootballId": 801
+  },
+  "28671": {
+    "slug": "cremonese",
+    "name": "קרמונזה",
+    "supplierTeamName": "US Cremonese",
+    "apiFootballId": 520
+  },
+  "28672": {
+    "slug": "sassuolo",
+    "name": "ססואולו",
+    "supplierTeamName": "US Sassuolo Calcio",
+    "apiFootballId": 488
+  },
+  "28696": {
+    "slug": "sunderland",
+    "name": "סנדרלנד",
+    "supplierTeamName": "Sunderland AFC",
+    "apiFootballId": 746
+  },
+  "28697": {
+    "slug": "hamburger-sv",
+    "name": "המבורגר SV",
+    "supplierTeamName": "Hamburger SV",
+    "apiFootballId": 175
+  },
+  "28698": {
+    "slug": "levante",
+    "name": "לבנטה",
+    "supplierTeamName": "Levante UD",
+    "apiFootballId": 539
+  },
+  "28699": {
+    "slug": "elche",
+    "name": "אלצ'ה",
+    "supplierTeamName": "Elche CF",
+    "apiFootballId": 797
+  },
+  "28700": {
+    "slug": "oviedo",
+    "name": "אוביידו",
+    "supplierTeamName": "Real Oviedo",
+    "apiFootballId": 718
+  },
+  "28715": {
+    "slug": "slavia-praha",
+    "name": "Slavia Praha",
+    "supplierTeamName": "SK Slavia Prague",
+    "apiFootballId": 560
+  },
+  "29382": {
+    "slug": "qarabag",
+    "name": "קרבאג",
+    "supplierTeamName": "Qarabağ FK",
+    "apiFootballId": 556
+  },
+  "29389": {
+    "slug": "kairat-almaty",
+    "name": "קייראט אלמטי",
+    "supplierTeamName": "Kairat Almaty",
+    "apiFootballId": 664
+  },
+  "29442": {
+    "slug": "japan",
+    "name": "יפן",
+    "supplierTeamName": "Japan World Cup 2026",
+    "apiFootballId": 12
+  },
+  "29443": {
+    "slug": "south-korea",
+    "name": "דרום קוריאה",
+    "supplierTeamName": "South Korea World Cup 2026",
+    "apiFootballId": 1531
+  },
+  "29444": {
+    "slug": "iran",
+    "name": "איראן",
+    "supplierTeamName": "Iran World Cup 2026",
+    "apiFootballId": 22
+  },
+  "29445": {
+    "slug": "uzbekistan",
+    "name": "אוזבקיסטן",
+    "supplierTeamName": "Uzbekistan World Cup 2026",
+    "apiFootballId": 1568
+  },
+  "29446": {
+    "slug": "jordan",
+    "name": "ירדן",
+    "supplierTeamName": "Jordan World Cup 2026",
+    "apiFootballId": 1548
+  },
+  "29447": {
+    "slug": "qatar",
+    "name": "קטאר",
+    "supplierTeamName": "Qatar World Cup 2026",
+    "apiFootballId": 1569
+  },
+  "29449": {
+    "slug": "saudi-arabia",
+    "name": "ערב הסעודית",
+    "supplierTeamName": "Saudi Arabia World Cup 2026",
+    "apiFootballId": 23
+  },
+  "29450": {
+    "slug": "tunisia",
+    "name": "טוניסיה",
+    "supplierTeamName": "Tunisia World Cup 2026",
+    "apiFootballId": 28
+  },
+  "29451": {
+    "slug": "algeria",
+    "name": "אלג'יריה",
+    "supplierTeamName": "Algeria World Cup 2026",
+    "apiFootballId": 1532
+  },
+  "29452": {
+    "slug": "egypt",
+    "name": "מצרים",
+    "supplierTeamName": "Egypt World Cup 2026",
+    "apiFootballId": 32
+  },
+  "29453": {
+    "slug": "senegal",
+    "name": "סנגל",
+    "supplierTeamName": "Senegal World Cup 2026",
+    "apiFootballId": 13
+  },
+  "29454": {
+    "slug": "ivory-coast",
+    "name": "חוף השנהב",
+    "supplierTeamName": "Ivory Coast World Cup 2026",
+    "apiFootballId": 1501
+  },
+  "29455": {
+    "slug": "cape-verde",
+    "name": "קייפ ורדה",
+    "supplierTeamName": "Cape Verde World Cup 2026",
+    "apiFootballId": 1533
+  },
+  "29456": {
+    "slug": "ghana",
+    "name": "גאנה",
+    "supplierTeamName": "Ghana World Cup 2026",
+    "apiFootballId": 1504
+  },
+  "29457": {
+    "slug": "south-africa",
+    "name": "דרום אפריקה",
+    "supplierTeamName": "South Africa World Cup 2026",
+    "apiFootballId": 3420
+  },
+  "29459": {
+    "slug": "new-zealand",
+    "name": "ניו זילנד",
+    "supplierTeamName": "New Zealand World Cup 2026",
+    "apiFootballId": 4673
+  },
+  "29460": {
+    "slug": "australia",
+    "name": "אוסטרליה",
+    "supplierTeamName": "Australia World Cup 2026",
+    "apiFootballId": 20
+  },
+  "29461": {
+    "slug": "morocco",
+    "name": "מרוקו",
+    "supplierTeamName": "Morocco World Cup 2026",
+    "apiFootballId": 31
+  },
+  "30845": {
+    "slug": "lorient",
+    "name": "לוריאן",
+    "supplierTeamName": "FC Lorient",
+    "apiFootballId": 97
+  },
+  "30846": {
+    "slug": "metz",
+    "name": "מץ",
+    "supplierTeamName": "FC Metz",
+    "apiFootballId": 112
+  },
+  "30847": {
+    "slug": "paris-fc",
+    "name": "פריז",
+    "supplierTeamName": "Paris FC",
+    "apiFootballId": 114
+  },
+  "30907": {
+    "slug": "haiti",
+    "name": "האיטי",
+    "supplierTeamName": "Haiti World Cup 2026",
+    "apiFootballId": 2386
+  },
+  "30908": {
+    "slug": "cura-ao",
+    "name": "קוראסאו",
+    "supplierTeamName": "Curaçao World Cup 2026",
+    "apiFootballId": 5530
+  }
+}

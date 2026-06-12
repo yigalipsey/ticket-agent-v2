@@ -27,6 +27,7 @@ export const teamsTable = pgTable(
     secondary_color: text('secondary_color'),
     api_football_id: integer('api_football_id').unique(),
     is_popular: boolean('is_popular').default(false),
+    is_national_team: boolean('is_national_team').default(false),
     seo_content: jsonb('seo_content').$type<SEOContent>(),
     created_at: timestamp('created_at').notNull().defaultNow(),
     updated_at: timestamp('updated_at').notNull().defaultNow(),

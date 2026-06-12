@@ -1,0 +1,770 @@
+[
+  {
+    "api_football_id": 529,
+    "slug": "barcelona"
+  },
+  {
+    "api_football_id": 530,
+    "slug": "atletico-madrid"
+  },
+  {
+    "api_football_id": 531,
+    "slug": "athletic-club"
+  },
+  {
+    "api_football_id": 532,
+    "slug": "valencia"
+  },
+  {
+    "api_football_id": 533,
+    "slug": "villarreal"
+  },
+  {
+    "api_football_id": 536,
+    "slug": "sevilla"
+  },
+  {
+    "api_football_id": 538,
+    "slug": "celta-vigo"
+  },
+  {
+    "api_football_id": 539,
+    "slug": "levante"
+  },
+  {
+    "api_football_id": 540,
+    "slug": "espanyol"
+  },
+  {
+    "api_football_id": 541,
+    "slug": "real-madrid"
+  },
+  {
+    "api_football_id": 542,
+    "slug": "alaves"
+  },
+  {
+    "api_football_id": 543,
+    "slug": "real-betis"
+  },
+  {
+    "api_football_id": 546,
+    "slug": "getafe"
+  },
+  {
+    "api_football_id": 547,
+    "slug": "girona"
+  },
+  {
+    "api_football_id": 548,
+    "slug": "real-sociedad"
+  },
+  {
+    "api_football_id": 718,
+    "slug": "oviedo"
+  },
+  {
+    "api_football_id": 727,
+    "slug": "osasuna"
+  },
+  {
+    "api_football_id": 728,
+    "slug": "rayo-vallecano"
+  },
+  {
+    "api_football_id": 797,
+    "slug": "elche"
+  },
+  {
+    "api_football_id": 798,
+    "slug": "mallorca"
+  },
+  {
+    "api_football_id": 33,
+    "slug": "manchester-united"
+  },
+  {
+    "api_football_id": 34,
+    "slug": "newcastle"
+  },
+  {
+    "api_football_id": 35,
+    "slug": "bournemouth"
+  },
+  {
+    "api_football_id": 36,
+    "slug": "fulham"
+  },
+  {
+    "api_football_id": 39,
+    "slug": "wolves"
+  },
+  {
+    "api_football_id": 40,
+    "slug": "liverpool"
+  },
+  {
+    "api_football_id": 42,
+    "slug": "arsenal"
+  },
+  {
+    "api_football_id": 44,
+    "slug": "burnley"
+  },
+  {
+    "api_football_id": 45,
+    "slug": "everton"
+  },
+  {
+    "api_football_id": 47,
+    "slug": "tottenham"
+  },
+  {
+    "api_football_id": 48,
+    "slug": "west-ham"
+  },
+  {
+    "api_football_id": 49,
+    "slug": "chelsea"
+  },
+  {
+    "api_football_id": 50,
+    "slug": "manchester-city"
+  },
+  {
+    "api_football_id": 51,
+    "slug": "brighton"
+  },
+  {
+    "api_football_id": 52,
+    "slug": "crystal-palace"
+  },
+  {
+    "api_football_id": 55,
+    "slug": "brentford"
+  },
+  {
+    "api_football_id": 63,
+    "slug": "leeds"
+  },
+  {
+    "api_football_id": 65,
+    "slug": "nottingham-forest"
+  },
+  {
+    "api_football_id": 66,
+    "slug": "aston-villa"
+  },
+  {
+    "api_football_id": 746,
+    "slug": "sunderland"
+  },
+  {
+    "api_football_id": 157,
+    "slug": "bayern-mnchen"
+  },
+  {
+    "api_football_id": 85,
+    "slug": "paris-saint-germain"
+  },
+  {
+    "api_football_id": 505,
+    "slug": "inter"
+  },
+  {
+    "api_football_id": 556,
+    "slug": "qarabag"
+  },
+  {
+    "api_football_id": 165,
+    "slug": "borussia-dortmund"
+  },
+  {
+    "api_football_id": 81,
+    "slug": "marseille"
+  },
+  {
+    "api_football_id": 569,
+    "slug": "club-brugge-kv"
+  },
+  {
+    "api_football_id": 228,
+    "slug": "sporting-cp"
+  },
+  {
+    "api_football_id": 169,
+    "slug": "eintracht-frankfurt"
+  },
+  {
+    "api_football_id": 492,
+    "slug": "napoli"
+  },
+  {
+    "api_football_id": 1393,
+    "slug": "union-st-gilloise"
+  },
+  {
+    "api_football_id": 645,
+    "slug": "galatasaray"
+  },
+  {
+    "api_football_id": 499,
+    "slug": "atalanta"
+  },
+  {
+    "api_football_id": 496,
+    "slug": "juventus"
+  },
+  {
+    "api_football_id": 327,
+    "slug": "bodoglimt"
+  },
+  {
+    "api_football_id": 168,
+    "slug": "bayer-leverkusen"
+  },
+  {
+    "api_football_id": 197,
+    "slug": "psv-eindhoven"
+  },
+  {
+    "api_football_id": 400,
+    "slug": "fc-copenhagen"
+  },
+  {
+    "api_football_id": 553,
+    "slug": ""
+  },
+  {
+    "api_football_id": 91,
+    "slug": "monaco"
+  },
+  {
+    "api_football_id": 560,
+    "slug": "slavia-praha"
+  },
+  {
+    "api_football_id": 3403,
+    "slug": "pafos"
+  },
+  {
+    "api_football_id": 211,
+    "slug": "benfica"
+  },
+  {
+    "api_football_id": 194,
+    "slug": "ajax"
+  },
+  {
+    "api_football_id": 664,
+    "slug": "kairat-almaty"
+  },
+  {
+    "api_football_id": 160,
+    "slug": "sc-freiburg"
+  },
+  {
+    "api_football_id": 161,
+    "slug": "vfl-wolfsburg"
+  },
+  {
+    "api_football_id": 162,
+    "slug": "werder-bremen"
+  },
+  {
+    "api_football_id": 163,
+    "slug": "borussia-mnchengladbach"
+  },
+  {
+    "api_football_id": 164,
+    "slug": "fsv-mainz-05"
+  },
+  {
+    "api_football_id": 167,
+    "slug": "1899-hoffenheim"
+  },
+  {
+    "api_football_id": 170,
+    "slug": "fc-augsburg"
+  },
+  {
+    "api_football_id": 172,
+    "slug": "vfb-stuttgart"
+  },
+  {
+    "api_football_id": 173,
+    "slug": "rb-leipzig"
+  },
+  {
+    "api_football_id": 175,
+    "slug": "hamburger-sv"
+  },
+  {
+    "api_football_id": 180,
+    "slug": "1-fc-heidenheim"
+  },
+  {
+    "api_football_id": 182,
+    "slug": "union-berlin"
+  },
+  {
+    "api_football_id": 186,
+    "slug": "fc-st-pauli"
+  },
+  {
+    "api_football_id": 192,
+    "slug": "1fc-kln"
+  },
+  {
+    "api_football_id": 77,
+    "slug": "angers"
+  },
+  {
+    "api_football_id": 79,
+    "slug": "lille"
+  },
+  {
+    "api_football_id": 80,
+    "slug": "lyon"
+  },
+  {
+    "api_football_id": 83,
+    "slug": "nantes"
+  },
+  {
+    "api_football_id": 84,
+    "slug": "nice"
+  },
+  {
+    "api_football_id": 94,
+    "slug": "rennes"
+  },
+  {
+    "api_football_id": 95,
+    "slug": "strasbourg"
+  },
+  {
+    "api_football_id": 96,
+    "slug": "toulouse"
+  },
+  {
+    "api_football_id": 97,
+    "slug": "lorient"
+  },
+  {
+    "api_football_id": 106,
+    "slug": "stade-brestois-29"
+  },
+  {
+    "api_football_id": 108,
+    "slug": "auxerre"
+  },
+  {
+    "api_football_id": 111,
+    "slug": "le-havre"
+  },
+  {
+    "api_football_id": 112,
+    "slug": "metz"
+  },
+  {
+    "api_football_id": 114,
+    "slug": "paris-fc"
+  },
+  {
+    "api_football_id": 116,
+    "slug": "lens"
+  },
+  {
+    "api_football_id": 487,
+    "slug": "lazio"
+  },
+  {
+    "api_football_id": 488,
+    "slug": "sassuolo"
+  },
+  {
+    "api_football_id": 489,
+    "slug": "ac-milan"
+  },
+  {
+    "api_football_id": 490,
+    "slug": "cagliari"
+  },
+  {
+    "api_football_id": 494,
+    "slug": "udinese"
+  },
+  {
+    "api_football_id": 495,
+    "slug": "genoa"
+  },
+  {
+    "api_football_id": 497,
+    "slug": "as-roma"
+  },
+  {
+    "api_football_id": 500,
+    "slug": "bologna"
+  },
+  {
+    "api_football_id": 502,
+    "slug": "fiorentina"
+  },
+  {
+    "api_football_id": 503,
+    "slug": "torino"
+  },
+  {
+    "api_football_id": 504,
+    "slug": "verona"
+  },
+  {
+    "api_football_id": 520,
+    "slug": "cremonese"
+  },
+  {
+    "api_football_id": 523,
+    "slug": "parma"
+  },
+  {
+    "api_football_id": 801,
+    "slug": "pisa"
+  },
+  {
+    "api_football_id": 867,
+    "slug": "lecce"
+  },
+  {
+    "api_football_id": 895,
+    "slug": "como"
+  },
+  {
+    "api_football_id": 2384,
+    "slug": "united-states"
+  },
+  {
+    "api_football_id": 5529,
+    "slug": "canada"
+  },
+  {
+    "api_football_id": 16,
+    "slug": "mexico"
+  },
+  {
+    "api_football_id": 12,
+    "slug": "japan"
+  },
+  {
+    "api_football_id": 22,
+    "slug": "iran"
+  },
+  {
+    "api_football_id": 20,
+    "slug": "australia"
+  },
+  {
+    "api_football_id": 1531,
+    "slug": "south-korea"
+  },
+  {
+    "api_football_id": 1569,
+    "slug": "qatar"
+  },
+  {
+    "api_football_id": 23,
+    "slug": "saudi-arabia"
+  },
+  {
+    "api_football_id": 1568,
+    "slug": "uzbekistan"
+  },
+  {
+    "api_football_id": 1548,
+    "slug": "jordan"
+  },
+  {
+    "api_football_id": 28,
+    "slug": "tunisia"
+  },
+  {
+    "api_football_id": 32,
+    "slug": "egypt"
+  },
+  {
+    "api_football_id": 1532,
+    "slug": "algeria"
+  },
+  {
+    "api_football_id": 1504,
+    "slug": "ghana"
+  },
+  {
+    "api_football_id": 1533,
+    "slug": "cape-verde"
+  },
+  {
+    "api_football_id": 3420,
+    "slug": "south-africa"
+  },
+  {
+    "api_football_id": 13,
+    "slug": "senegal"
+  },
+  {
+    "api_football_id": 1501,
+    "slug": "ivory-coast"
+  },
+  {
+    "api_football_id": 26,
+    "slug": "argentina"
+  },
+  {
+    "api_football_id": 6,
+    "slug": "brazil"
+  },
+  {
+    "api_football_id": 8,
+    "slug": "colombia"
+  },
+  {
+    "api_football_id": 2382,
+    "slug": "ecuador"
+  },
+  {
+    "api_football_id": 3427,
+    "slug": "paraguay"
+  },
+  {
+    "api_football_id": 7,
+    "slug": "uruguay"
+  },
+  {
+    "api_football_id": 11,
+    "slug": "panama"
+  },
+  {
+    "api_football_id": 2386,
+    "slug": "haiti"
+  },
+  {
+    "api_football_id": 5530,
+    "slug": "curaao"
+  },
+  {
+    "api_football_id": 4673,
+    "slug": "new-zealand"
+  },
+  {
+    "api_football_id": 10,
+    "slug": "england"
+  },
+  {
+    "api_football_id": 2,
+    "slug": "france"
+  },
+  {
+    "api_football_id": 25,
+    "slug": "germany"
+  },
+  {
+    "api_football_id": 1118,
+    "slug": "netherlands"
+  },
+  {
+    "api_football_id": 1,
+    "slug": "belgium"
+  },
+  {
+    "api_football_id": 27,
+    "slug": "portugal"
+  },
+  {
+    "api_football_id": 3,
+    "slug": "croatia"
+  },
+  {
+    "api_football_id": 1090,
+    "slug": "norway"
+  },
+  {
+    "api_football_id": 15,
+    "slug": "switzerland"
+  },
+  {
+    "api_football_id": 3442,
+    "slug": "austria"
+  },
+  {
+    "api_football_id": 1108,
+    "slug": "scotland"
+  },
+  {
+    "api_football_id": 9,
+    "slug": "spain"
+  },
+  {
+    "api_football_id": 31,
+    "slug": "morocco"
+  },
+  {
+    "api_football_id": 3446,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3447,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3448,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3449,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3450,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3451,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3452,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3453,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3454,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3455,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3456,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3457,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3458,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3459,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3460,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3461,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3462,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3463,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3464,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3465,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3466,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3467,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3468,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3469,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3470,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3471,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3472,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3473,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3474,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3475,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3477,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3478,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3479,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3480,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3481,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3482,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3483,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3484,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3485,
+    "slug": ""
+  },
+  {
+    "api_football_id": 3486,
+    "slug": ""
+  }
+]
